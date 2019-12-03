@@ -20,3 +20,16 @@ $ go run 2b/main.go 2b/in.txt
 MATCH! noun: 53, verb: 35
 Answer: 5335
 ```
+
+## Day 3
+
+```bash
+$ go run 3a/main.go 3a/in.txt 
+865
+
+$ go run 3b/main.go 3b/in.txt 
+Closest position: {431 -434}
+Closest Distance: 865
+fastest position: {-898 1313}
+Fastest Steps: 35038
+```
