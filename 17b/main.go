@@ -186,6 +186,7 @@ func (c *computer) shutdown() {
 
 func (c *computer) getInput() int {
 	i := <-c.input
+	fmt.Println("INPUT", i)
 	return i
 }
 
@@ -288,6 +289,7 @@ func (c *computer) doOperation(op operation) *int {
 			c.result = op.params[0]
 		}
 		// fmt.Printf("COMP %d OUTPUT TO CHAIN:\t%d\n", c.id, c.result)
+		fmt.Println("OUTPUT", c.result)
 		c.output <- c.result // send result to output chan
 	case OpCodeJumpIfTrue:
 		var v1, v2 int
@@ -508,33 +510,30 @@ func max(in []int) int {
 	return m
 }
 
-var rawInput = `A,B,C
-L,10,R,8
-y
+var rawInput = `A,A,B,C,B,C,B,C,C,A
+L,10,R,8,R,8
+L,10,L,12,R,8,R,10
+R,10,L,12,R,10
+n
 `
 
 func main() {
 	input := []int{}
-	for _, line := range strings.Split(rawInput, "\n") {
-		for _, op := range strings.Split(line, ",") {
-			if i, err := strconv.Atoi(op); err != nil {
-				fmt.Println(i)
-				input = append(input, i)
-			} else {
-				for _, r := range op {
-					input = append(input, int(r))
-				}
-			}
-		}
+	for _, op := range rawInput {
+		input = append(input, int(op))
 	}
 
 	fmt.Println(input)
-	return
 
 	code := getData(os.Args[1])
 	c := newComputer(0, code)
 
 	go c.start()
+	go func() {
+		for i := 0; i < len(input); i++ {
+			c.input <- input[i]
+		}
+	}()
 
 	screen := [][]Tile{}
 	line := []Tile{}
@@ -551,47 +550,18 @@ func main() {
 		default:
 			line = append(line, t)
 		}
+
 	}
+
+	// print screen
 	// fmt.Println(screen)
+	for y := range screen {
+		for _, v := range screen[y] {
+			fmt.Printf(string(v))
+		}
+		fmt.Println()
+	}
 	<-c.quit
-
-	// print screen
-	for y := range screen {
-		for _, v := range screen[y] {
-			fmt.Printf(string(v))
-		}
-		fmt.Println()
-	}
-
-	// Find intersections
-	alignmentParams := []int{}
-	for y := range screen {
-		for x := range screen[y] {
-			if (y-1 > 0 && screen[y-1][x] == TileScaffold) &&
-				(y+1 < len(screen) && screen[y+1][x] == TileScaffold) &&
-				(x-1 > 0 && screen[y][x-1] == TileScaffold) &&
-				(x+1 < len(screen[y]) && screen[y][x+1] == TileScaffold) &&
-				screen[y][x] == TileScaffold {
-				screen[y][x] = TileIntersection
-				alignmentParams = append(alignmentParams, x*y)
-			}
-		}
-	}
-
-	// print screen
-	fmt.Println()
-	for y := range screen {
-		for _, v := range screen[y] {
-			fmt.Printf(string(v))
-		}
-		fmt.Println()
-	}
-
-	sum := 0
-	for _, ap := range alignmentParams {
-		sum += ap
-	}
-	fmt.Println("AP SUM", sum)
 }
 
 type Tile rune
