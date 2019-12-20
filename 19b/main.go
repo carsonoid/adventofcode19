@@ -510,104 +510,113 @@ func max(in []int) int {
 	return m
 }
 
-type vector struct {
-	X, Y int
+type BeamLine struct {
+	Start, End, Width int
 }
 
-var xDim = 2500
-var yDim = 2500
+func getBeamStartCoord(code []int) (int, int) {
+	x := 0
+	y := 0
+	for { // line
+		for { // x coord
+			c := newComputer(0, code)
+			go c.start()
+			c.input <- x
+			c.input <- y
+			out := <-c.output
+			// fmt.Println("TEST:", x, y, out)
 
-var target = 100
+			if out == 1 && x > 0 && y > 0 {
+				// fmt.Println("FIRST", x, y, out)
+				return x, y
+			}
+			x++
+			<-c.quit
+			if x > 20 { // only try first few x points to get started
+				x = 0
+				y++
+			}
+		}
+		x = 0
+		y++
+	}
+}
+
+func getBeamLine(code []int, x int, y int) BeamLine {
+	bl := BeamLine{
+		Start: -1,
+		End:   -1,
+	}
+	for { // line
+		for { // x coord
+			c := newComputer(0, code)
+			go c.start()
+			c.input <- x
+			c.input <- y
+			out := <-c.output
+			// fmt.Printf("TEST: x:%d, y:%d, out:%d\n", x, y, out)
+
+			if out == 1 {
+				bl.Width++
+				if bl.Start < 0 {
+					bl.Start = x
+				}
+			} else if bl.Width > 0 && bl.Start > 0 {
+				bl.End = x - 1
+				return bl
+			}
+			x++
+			<-c.quit
+		}
+		x = 0
+		y++
+	}
+}
+
+var targetSize = 100
 
 func main() {
-	input := []vector{}
-	for x := 0; x < xDim; x++ {
-		for y := 0; y < yDim; y++ {
-			input = append(input, vector{X: x, Y: y})
-		}
-	}
-	// fmt.Println(input)
-
 	code := getData("code.txt")
+	x, y := getBeamStartCoord(code)
+	fmt.Println("BEAM STARTS AT", y)
 
-	screen := [][]Tile{}
-	line := []Tile{}
-	for i := 0; i < len(input); i++ {
-		c := newComputer(0, code)
-		go c.start()
-		c.input <- input[i].X
-		c.input <- input[i].Y
+	var beamLines = make([]BeamLine, y) // make sure line Y is at pos Y in the array
+	for {
+		bl := getBeamLine(code, x, y)
+		beamLines = append(beamLines, bl)
+		fmt.Printf("%d: %#v\n", y, bl)
+		x = bl.Start
+		y++
 
-		for out := range c.output {
-			var t Tile
-			switch out {
-			case 0:
-				t = TileStationary
-			case 1:
-				t = TilePulled
-			default:
-				panic(out)
-			}
-			line = append(line, t)
-			if len(line) == xDim {
-				newLine := make([]Tile, len(line))
-				copy(newLine, line)
-				line = line[:0]
-				screen = append(screen, newLine)
-				if len(screen)%100 == 0 {
-					fmt.Println("GENERATED ROW ", len(screen))
-				}
+		// Test for fit
+		if bl.Width >= targetSize {
+			topBL := beamLines[y-targetSize]
+			if topBL.Width >= targetSize &&
+				topBL.Start <= bl.Start &&
+				bl.Start+targetSize <= topBL.End {
+				fmt.Printf("RESULT\nTOP:%#v\nBOT:%#v\nANSWER: %d\n", topBL, bl, ((topBL.End-targetSize)*10000)+y)
+				break
 			}
 		}
-		<-c.quit
 	}
 
-	// print screen
-	// fmt.Println(screen)
-	for y := range screen {
-		// fmt.Printf("%d | ", y)
-		// for _, v := range screen[y] {
-		// 	fmt.Printf(string(v))
-		// }
-		beamWidth, beamStart := getBeamWidthAndStart(screen[y], 0)
-		if beamWidth >= target {
-			// make sure the last N rows are also wide enough,check top down
-			fitsAll := true
-			for rowNum := y - target + 1; rowNum <= y; rowNum++ {
-				width, _ := getBeamWidthAndStart(screen[rowNum], beamStart)
-				fmt.Printf("R%d:%d\n", rowNum, width)
-				if width < target {
-					fitsAll = false
-					break
-				}
-			}
-			if fitsAll {
-				fmt.Printf("BOTTOM ROW, START IS %d,%d\n", beamStart, y-target+1)
-				os.Exit(0)
-			}
-		}
-		fmt.Println()
-	}
+	// beamWidth, beamStart := getBeamWidthAndStart(screen[y], 0)
+	// if beamWidth >= target {
+	// 	// make sure the last N rows are also wide enough,check top down
+	// 	fitsAll := true
+	// 	for rowNum := y - target + 1; rowNum <= y; rowNum++ {
+	// 		width, _ := getBeamWidthAndStart(screen[rowNum], beamStart)
+	// 		fmt.Printf("R%d:%d\n", rowNum, width)
+	// 		if width < target {
+	// 			fitsAll = false
+	// 			break
+	// 		}
+	// 	}
+	// 	if fitsAll {
+	// 		fmt.Printf("BOTTOM ROW, START IS %d,%d\n", beamStart, y-target+1)
+	// 		os.Exit(0)
+	// 	}
+	// }
+	// fmt.Println()
+
 }
-
-func getBeamWidthAndStart(row []Tile, startPos int) (int, int) {
-	beamWidth := 0
-	beamStart := -1
-	for x, v := range row[startPos:] {
-		if v == TilePulled {
-			if beamStart < 0 {
-				beamStart = x
-			}
-			beamWidth++
-		}
-	}
-	return beamWidth, beamStart
-}
-
-type Tile rune
-
-const (
-	TilePulled     Tile = '#'
-	TileStationary Tile = '.'
-	TileEdge       Tile = 'X'
-)

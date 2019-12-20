@@ -547,7 +547,7 @@ func main() {
 				panic(out)
 			}
 			line = append(line, t)
-			if len(line) > 50 {
+			if len(line) == 50 {
 				newLine := make([]Tile, len(line))
 				copy(newLine, line)
 				line = line[:0]
@@ -560,6 +560,7 @@ func main() {
 	// print screen
 	// fmt.Println(screen)
 	for y := range screen {
+		fmt.Printf("%d |",y)
 		for _, v := range screen[y] {
 			fmt.Printf(string(v))
 		}
