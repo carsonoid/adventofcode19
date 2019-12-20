@@ -573,10 +573,12 @@ func getBeamLine(code []int, x int, y int) BeamLine {
 	}
 }
 
-var targetSize = 100
-
 func main() {
-	code := getData("code.txt")
+	code := getData(os.Args[1])
+	targetSize, err := strconv.Atoi(os.Args[2])
+	if err != nil {
+		panic(err)
+	}
 	x, y := getBeamStartCoord(code)
 	fmt.Println("BEAM STARTS AT", y)
 
@@ -584,20 +586,20 @@ func main() {
 	for {
 		bl := getBeamLine(code, x, y)
 		beamLines = append(beamLines, bl)
-		fmt.Printf("%d: %#v\n", y, bl)
+		// fmt.Printf("%d: %#v\n", y, bl)
 		x = bl.Start
-		y++
 
 		// Test for fit
 		if bl.Width >= targetSize {
-			topBL := beamLines[y-targetSize]
-			if topBL.Width >= targetSize &&
-				topBL.Start <= bl.Start &&
-				bl.Start+targetSize <= topBL.End {
-				fmt.Printf("RESULT\nTOP:%#v\nBOT:%#v\nANSWER: %d\n", topBL, bl, ((topBL.End-targetSize)*10000)+y)
+			topY := y - targetSize + 1
+			topBL := beamLines[topY]
+			if bl.Start+targetSize-1 == topBL.End {
+				fmt.Printf("RESULT\nTOP %d:%#v\nBOT %d:%#v\n\n", topY, topBL, y, bl)
+				fmt.Printf("ANSWER: %d\n", bl.Start*10000+topY)
 				break
 			}
 		}
+		y++
 	}
 
 	// beamWidth, beamStart := getBeamWidthAndStart(screen[y], 0)
