@@ -601,24 +601,4 @@ func main() {
 		}
 		y++
 	}
-
-	// beamWidth, beamStart := getBeamWidthAndStart(screen[y], 0)
-	// if beamWidth >= target {
-	// 	// make sure the last N rows are also wide enough,check top down
-	// 	fitsAll := true
-	// 	for rowNum := y - target + 1; rowNum <= y; rowNum++ {
-	// 		width, _ := getBeamWidthAndStart(screen[rowNum], beamStart)
-	// 		fmt.Printf("R%d:%d\n", rowNum, width)
-	// 		if width < target {
-	// 			fitsAll = false
-	// 			break
-	// 		}
-	// 	}
-	// 	if fitsAll {
-	// 		fmt.Printf("BOTTOM ROW, START IS %d,%d\n", beamStart, y-target+1)
-	// 		os.Exit(0)
-	// 	}
-	// }
-	// fmt.Println()
-
 }
