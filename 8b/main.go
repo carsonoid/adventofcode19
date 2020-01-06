@@ -42,44 +42,47 @@ func main() {
 		pixel := int(r - '0')
 		layer = append(layer, pixel)
 
-		if len(layers) == imgHeight && curWidth == imgSize {
-			break
-		}
 		if curWidth == imgSize {
 			layers = append(layers, layer)
 			layer = []int{}
 			curWidth = 0
 		}
+		if len(layers) == imgHeight && curWidth == imgSize {
+			break
+		}
 	}
 
 	for i := range layers {
-		fmt.Printf("Layer %v: %v\n", i, layers[i])
+		fmt.Printf("%v\n", layers[i])
 	}
 
-	checksums := map[int]map[int]int{}
-	for i, layer := range layers {
-		checksums[i] = map[int]int{}
-		for _, pixel := range layer {
-			checksums[i][pixel]++
+	// Get the rendered layer. The first non-transparent pixel
+	// for a position is the rendered image
+	rendered := make([]int, imgSize)
+	for i := range rendered {
+		rendered[i] = 2
+	}
+	for _, layer := range layers {
+		for pos, pixel := range layer {
+			if pixel != 2 && rendered[pos] == 2 {
+				rendered[pos] = pixel
+			}
 		}
 	}
-	fmt.Printf("Checksums %v\n", checksums)
+	fmt.Printf("\n%v\n", rendered)
 
-	winner := 0
-	lastCount := -1
-	for lnum, counts := range checksums {
-		count := counts[0]
-		if count < lastCount || lastCount < 0 {
-			winner = lnum
-			lastCount = count
+	curWidth = 0
+	for _, pixel := range rendered {
+		curWidth++
+		switch pixel {
+		case 0:
+			fmt.Printf("\u2591")
+		case 1:
+			fmt.Printf("\u2588")
+		}
+		// fmt.Printf("%d", pixel)
+		if curWidth%imgWidth == 0 {
+			fmt.Printf("\n")
 		}
 	}
-
-	fmt.Printf("WINNER! %v\n", winner)
-
-	pixelCounts := map[int]int{}
-	for _, pixel := range layers[winner] {
-		pixelCounts[pixel]++
-	}
-	fmt.Printf("ANSWER! %v\n", pixelCounts[1]*pixelCounts[2])
 }
