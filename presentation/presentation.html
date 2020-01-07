@@ -1,0 +1,690 @@
+<!DOCTYPE html><html lang="en-US"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"><meta name="apple-mobile-web-app-capable" content="yes"><meta http-equiv="X-UA-Compatible" content="ie=edge"><meta property="og:type" content="website"><meta name="twitter:card" content="summary"><style>@media screen{body,html{background:#000;height:100%;margin:0;overflow:hidden}[data-bespoke-marp-fragment=inactive]{visibility:hidden}.bespoke-marp-osc{display:none;opacity:0}.bespoke-marp-parent{bottom:0;left:0;position:absolute;right:0;top:0}.bespoke-marp-parent>.bespoke-marp-osc{background:rgba(0,0,0,.65);border-radius:7px;bottom:50px;color:#fff;display:block;font-family:Helvetica,Arial,sans-serif;font-size:16px;left:50%;line-height:0;opacity:1;padding:12px;position:absolute;touch-action:manipulation;-webkit-transform:translateX(-50%);transform:translateX(-50%);-webkit-transition:opacity .2s linear;transition:opacity .2s linear;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;white-space:nowrap;z-index:1;will-change:transform}.bespoke-marp-parent>.bespoke-marp-osc>*{margin-left:6px}.bespoke-marp-parent>.bespoke-marp-osc>:first-child{margin-left:0}.bespoke-marp-parent>.bespoke-marp-osc>span{opacity:.8}.bespoke-marp-parent>.bespoke-marp-osc>span[data-bespoke-marp-osc=page]{display:inline-block;min-width:140px;text-align:center}.bespoke-marp-parent>.bespoke-marp-osc>button{-webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:transparent;border:0;color:inherit;cursor:pointer;font-size:inherit;opacity:.8;outline:none;padding:0;-webkit-transition:opacity .2s linear;transition:opacity .2s linear;-webkit-tap-highlight-color:transparent}.bespoke-marp-parent>.bespoke-marp-osc>button:disabled{cursor:not-allowed;opacity:.15!important}.bespoke-marp-parent>.bespoke-marp-osc>button:hover{opacity:1}.bespoke-marp-parent>.bespoke-marp-osc>button:hover:active{opacity:.6}.bespoke-marp-parent>.bespoke-marp-osc>button:hover:not(:disabled){-webkit-transition:none;transition:none}.bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=prev]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNNjggOTBMMjggNTBsNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;height:32px;overflow:hidden;text-indent:100%;white-space:nowrap;width:32px}.bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=next]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI1IiBkPSJNMzIgOTBsNDAtNDAtNDAtNDAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;height:32px;overflow:hidden;text-indent:100%;white-space:nowrap;width:32px}.bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen]{background:transparent url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTQwIDcwSDIwVjUwbTIwIDBMMjAgNzBtNDAtNDBoMjB2MjBtLTIwIDBsMjAtMjAiLz48L3N2Zz4=") no-repeat 50%;background-size:contain;height:32px;overflow:hidden;text-indent:100%;white-space:nowrap;width:32px}.bespoke-marp-parent>.bespoke-marp-osc>button[data-bespoke-marp-osc=fullscreen].exit{background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48ZGVmcz48c3R5bGU+LmF7ZmlsbDpub25lO3N0cm9rZTojZmZmO3N0cm9rZS1saW5lY2FwOnJvdW5kO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2Utd2lkdGg6NXB4fTwvc3R5bGU+PC9kZWZzPjxyZWN0IGNsYXNzPSJhIiB4PSIxMCIgeT0iMjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI2MCIgcng9IjUuNjciLz48cGF0aCBjbGFzcz0iYSIgZD0iTTIwIDUwaDIwdjIwbS0yMCAwbDIwLTIwbTQwIDBINjBWMzBtMjAgMEw2MCA1MCIvPjwvc3ZnPg==")}.bespoke-marp-parent.bespoke-marp-inactive{cursor:none}.bespoke-marp-parent.bespoke-marp-inactive>.bespoke-marp-osc{opacity:0;pointer-events:none}svg.bespoke-marp-slide{height:100%;left:0;pointer-events:none;position:absolute;top:0;width:100%;z-index:-1}svg.bespoke-marp-slide.bespoke-marp-active{pointer-events:auto;z-index:0}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable]{display:none}svg.bespoke-marp-slide[data-bespoke-marp-load=hideable].bespoke-marp-active{display:block}.bespoke-progress-parent{background:#222;display:-webkit-box;display:flex;height:5px;width:100%}.bespoke-progress-parent+.bespoke-marp-parent{top:5px}.bespoke-progress-parent .bespoke-progress-bar{-webkit-box-flex:0;flex:0 0 0;background:#0288d1;-webkit-transition:-webkit-flex-basis .2s cubic-bezier(0,1,1,1);transition:-webkit-flex-basis .2s cubic-bezier(0,1,1,1);transition:flex-basis .2s cubic-bezier(0,1,1,1);transition:flex-basis .2s cubic-bezier(0,1,1,1),-webkit-flex-basis .2s cubic-bezier(0,1,1,1)}}@media print{.bespoke-marp-osc,.bespoke-progress-parent{display:none!important;-webkit-transition:none!important;transition:none!important}.bespoke-marp-parent{top:0}}</style><style>div#p>svg>foreignObject>section{width:1280px;height:720px;box-sizing:border-box;overflow:hidden;position:relative;scroll-snap-align:center center}div#p>svg>foreignObject>section:after{bottom:0;content:attr(data-marpit-pagination);padding:inherit;pointer-events:none;position:absolute;right:0}div#p>svg>foreignObject>section:not([data-marpit-pagination]):after{display:none}/* Normalization */div#p>svg>foreignObject>section h1{font-size:2em;margin:0.67em 0}div#p>svg>foreignObject>section video::-webkit-media-controls{will-change:transform}@page{size:1280px 720px;margin:0}@media print{body,html{background-color:#fff;margin:0;page-break-inside:avoid;break-inside:avoid-page}div#p>svg>foreignObject>section{page-break-before:always;break-before:page}div#p>svg>foreignObject>section,div#p>svg>foreignObject>section *{-webkit-print-color-adjust:exact!important;color-adjust:exact!important}div#p>svg[data-marpit-svg]{display:block;height:100vh;width:100vw}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{display:block;height:auto;width:100%}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{position:static}}div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{content:""}@supports (-ms-ime-align:auto){div#p>svg>foreignObject>section svg[data-marp-fitting=svg].__reflow__{position:relative}}div#p>svg>foreignObject>section [data-marp-fitting-svg-content]{display:table;white-space:nowrap}div#p>svg>foreignObject>section [data-marp-fitting-svg-content-wrap]{white-space:pre}div#p>svg>foreignObject>section img[data-marp-twemoji]{background:transparent;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em;width:1em}
+/*!
+ * Marp default theme.
+ *
+ * @theme default
+ * @author Yuki Hattori
+ *
+ * @auto-scaling true
+ * @size 4:3 960px 720px
+ */div#p>svg>foreignObject>section .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}div#p>svg>foreignObject>section .anchor{float:left;line-height:1;margin-left:-20px;padding-right:4px}div#p>svg>foreignObject>section .anchor:focus{outline:none}div#p>svg>foreignObject>section h1 .octicon-link,div#p>svg>foreignObject>section h2 .octicon-link,div#p>svg>foreignObject>section h3 .octicon-link,div#p>svg>foreignObject>section h4 .octicon-link,div#p>svg>foreignObject>section h5 .octicon-link,div#p>svg>foreignObject>section h6 .octicon-link{color:#1b1f23;vertical-align:middle;visibility:hidden}div#p>svg>foreignObject>section h1:hover .anchor,div#p>svg>foreignObject>section h2:hover .anchor,div#p>svg>foreignObject>section h3:hover .anchor,div#p>svg>foreignObject>section h4:hover .anchor,div#p>svg>foreignObject>section h5:hover .anchor,div#p>svg>foreignObject>section h6:hover .anchor{text-decoration:none}div#p>svg>foreignObject>section h1:hover .anchor .octicon-link,div#p>svg>foreignObject>section h2:hover .anchor .octicon-link,div#p>svg>foreignObject>section h3:hover .anchor .octicon-link,div#p>svg>foreignObject>section h4:hover .anchor .octicon-link,div#p>svg>foreignObject>section h5:hover .anchor .octicon-link,div#p>svg>foreignObject>section h6:hover .anchor .octicon-link{visibility:visible}div#p>svg>foreignObject>section{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;color:#24292e;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;font-size:16px;line-height:1.5;word-wrap:break-word}div#p>svg>foreignObject>section .pl-c{color:#6a737d}div#p>svg>foreignObject>section .pl-c1,div#p>svg>foreignObject>section .pl-s .pl-v{color:#005cc5}div#p>svg>foreignObject>section .pl-e,div#p>svg>foreignObject>section .pl-en{color:#6f42c1}div#p>svg>foreignObject>section .pl-s .pl-s1,div#p>svg>foreignObject>section .pl-smi{color:#24292e}div#p>svg>foreignObject>section .pl-ent{color:#22863a}div#p>svg>foreignObject>section .pl-k{color:#d73a49}div#p>svg>foreignObject>section .pl-pds,div#p>svg>foreignObject>section .pl-s,div#p>svg>foreignObject>section .pl-s .pl-pse .pl-s1,div#p>svg>foreignObject>section .pl-sr,div#p>svg>foreignObject>section .pl-sr .pl-cce,div#p>svg>foreignObject>section .pl-sr .pl-sra,div#p>svg>foreignObject>section .pl-sr .pl-sre{color:#032f62}div#p>svg>foreignObject>section .pl-smw,div#p>svg>foreignObject>section .pl-v{color:#e36209}div#p>svg>foreignObject>section .pl-bu{color:#b31d28}div#p>svg>foreignObject>section .pl-ii{background-color:#b31d28;color:#fafbfc}div#p>svg>foreignObject>section .pl-c2{background-color:#d73a49;color:#fafbfc}div#p>svg>foreignObject>section .pl-c2:before{content:"^M"}div#p>svg>foreignObject>section .pl-sr .pl-cce{color:#22863a;font-weight:700}div#p>svg>foreignObject>section .pl-ml{color:#735c0f}div#p>svg>foreignObject>section .pl-mh,div#p>svg>foreignObject>section .pl-mh .pl-en,div#p>svg>foreignObject>section .pl-ms{color:#005cc5;font-weight:700}div#p>svg>foreignObject>section .pl-mi{color:#24292e;font-style:italic}div#p>svg>foreignObject>section .pl-mb{color:#24292e;font-weight:700}div#p>svg>foreignObject>section .pl-md{background-color:#ffeef0;color:#b31d28}div#p>svg>foreignObject>section .pl-mi1{background-color:#f0fff4;color:#22863a}div#p>svg>foreignObject>section .pl-mc{background-color:#ffebda;color:#e36209}div#p>svg>foreignObject>section .pl-mi2{background-color:#005cc5;color:#f6f8fa}div#p>svg>foreignObject>section .pl-mdr{color:#6f42c1;font-weight:700}div#p>svg>foreignObject>section .pl-ba{color:#586069}div#p>svg>foreignObject>section .pl-sg{color:#959da5}div#p>svg>foreignObject>section .pl-corl{color:#032f62;text-decoration:underline}div#p>svg>foreignObject>section details{display:block}div#p>svg>foreignObject>section summary{display:list-item}div#p>svg>foreignObject>section a{background-color:transparent}div#p>svg>foreignObject>section a:active,div#p>svg>foreignObject>section a:hover{outline-width:0}div#p>svg>foreignObject>section strong{font-weight:inherit;font-weight:bolder}div#p>svg>foreignObject>section h1{margin:.67em 0}div#p>svg>foreignObject>section img{border-style:none}div#p>svg>foreignObject>section code,div#p>svg>foreignObject>section kbd,div#p>svg>foreignObject>section pre{font-family:monospace,monospace;font-size:1em}div#p>svg>foreignObject>section hr{box-sizing:content-box;overflow:visible}div#p>svg>foreignObject>section input{font:inherit;margin:0;overflow:visible}div#p>svg>foreignObject>section [type=checkbox]{padding:0}div#p>svg>foreignObject>section *,div#p>svg>foreignObject>section [type=checkbox]{box-sizing:border-box}div#p>svg>foreignObject>section input{font-family:inherit;font-size:inherit;line-height:inherit}div#p>svg>foreignObject>section a{color:#0366d6;text-decoration:none}div#p>svg>foreignObject>section a:hover{text-decoration:underline}div#p>svg>foreignObject>section strong{font-weight:600}div#p>svg>foreignObject>section hr{background:transparent;border-bottom:1px solid #dfe2e5;height:0;margin:15px 0;overflow:hidden}div#p>svg>foreignObject>section hr:after,div#p>svg>foreignObject>section hr:before{content:"";display:table}div#p>svg>foreignObject>section hr:after{clear:both}div#p>svg>foreignObject>section table{border-collapse:collapse;border-spacing:0}div#p>svg>foreignObject>section td,div#p>svg>foreignObject>section th{padding:0}div#p>svg>foreignObject>section details summary{cursor:pointer}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{margin-bottom:0;margin-top:0}div#p>svg>foreignObject>section h1{font-size:32px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2{font-weight:600}div#p>svg>foreignObject>section h2{font-size:24px}div#p>svg>foreignObject>section h3{font-size:20px}div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4{font-weight:600}div#p>svg>foreignObject>section h4{font-size:16px}div#p>svg>foreignObject>section h5{font-size:14px}div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{font-weight:600}div#p>svg>foreignObject>section h6{font-size:12px}div#p>svg>foreignObject>section p{margin-bottom:10px;margin-top:0}div#p>svg>foreignObject>section blockquote{margin:0}div#p>svg>foreignObject>section ol,div#p>svg>foreignObject>section ul{margin-bottom:0;margin-top:0;padding-left:0}div#p>svg>foreignObject>section ol ol,div#p>svg>foreignObject>section ul ol{list-style-type:lower-roman}div#p>svg>foreignObject>section ol ol ol,div#p>svg>foreignObject>section ol ul ol,div#p>svg>foreignObject>section ul ol ol,div#p>svg>foreignObject>section ul ul ol{list-style-type:lower-alpha}div#p>svg>foreignObject>section dd{margin-left:0}div#p>svg>foreignObject>section code,div#p>svg>foreignObject>section pre{font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px}div#p>svg>foreignObject>section pre{margin-bottom:0;margin-top:0}div#p>svg>foreignObject>section input::-webkit-inner-spin-button,div#p>svg>foreignObject>section input::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}div#p>svg>foreignObject>section .border{border:1px solid #e1e4e8!important}div#p>svg>foreignObject>section .border-0{border:0!important}div#p>svg>foreignObject>section .border-bottom{border-bottom:1px solid #e1e4e8!important}div#p>svg>foreignObject>section .rounded-1{border-radius:3px!important}div#p>svg>foreignObject>section .bg-white{background-color:#fff!important}div#p>svg>foreignObject>section .bg-gray-light{background-color:#fafbfc!important}div#p>svg>foreignObject>section .text-gray-light{color:#6a737d!important}div#p>svg>foreignObject>section .mb-0{margin-bottom:0!important}div#p>svg>foreignObject>section .my-2{margin-bottom:8px!important;margin-top:8px!important}div#p>svg>foreignObject>section .py-0{padding-bottom:0!important;padding-top:0!important}div#p>svg>foreignObject>section .py-2{padding-bottom:8px!important;padding-top:8px!important}div#p>svg>foreignObject>section .pl-3,div#p>svg>foreignObject>section .px-3{padding-left:16px!important}div#p>svg>foreignObject>section .px-3{padding-right:16px!important}div#p>svg>foreignObject>section .f6{font-size:12px!important}div#p>svg>foreignObject>section .lh-condensed{line-height:1.25!important}div#p>svg>foreignObject>section .text-bold{font-weight:600!important}div#p>svg>foreignObject>section:after,div#p>svg>foreignObject>section:before{
+  /* content:""; */display:table}div#p>svg>foreignObject>section:after{clear:both}div#p>svg>foreignObject>section>:first-child{margin-top:0!important}div#p>svg>foreignObject>section>:last-child{margin-bottom:0!important}div#p>svg>foreignObject>section a:not([href]){color:inherit;text-decoration:none}div#p>svg>foreignObject>section blockquote,div#p>svg>foreignObject>section dl,div#p>svg>foreignObject>section ol,div#p>svg>foreignObject>section p,div#p>svg>foreignObject>section pre,div#p>svg>foreignObject>section table,div#p>svg>foreignObject>section ul{margin-bottom:16px;margin-top:0}div#p>svg>foreignObject>section hr{background-color:#e1e4e8;border:0;height:.25em;margin:24px 0;padding:0}div#p>svg>foreignObject>section blockquote{border-left:.25em solid #dfe2e5;color:#6a737d;padding:0 1em}div#p>svg>foreignObject>section blockquote>:first-child{margin-top:0}div#p>svg>foreignObject>section blockquote>:last-child{margin-bottom:0}div#p>svg>foreignObject>section kbd{border:1px solid #c6cbd1;border-bottom-color:#959da5;box-shadow:inset 0 -1px 0 #959da5;font-size:11px}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2,div#p>svg>foreignObject>section h3,div#p>svg>foreignObject>section h4,div#p>svg>foreignObject>section h5,div#p>svg>foreignObject>section h6{font-weight:600;line-height:1.25;margin-bottom:16px;margin-top:24px}div#p>svg>foreignObject>section h1{font-size:2em}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2{border-bottom:1px solid #eaecef;padding-bottom:.3em}div#p>svg>foreignObject>section h2{font-size:1.5em}div#p>svg>foreignObject>section h3{font-size:1.25em}div#p>svg>foreignObject>section h4{font-size:1em}div#p>svg>foreignObject>section h5{font-size:.875em}div#p>svg>foreignObject>section h6{color:#6a737d;font-size:.85em}div#p>svg>foreignObject>section ol,div#p>svg>foreignObject>section ul{padding-left:2em}div#p>svg>foreignObject>section ol ol,div#p>svg>foreignObject>section ol ul,div#p>svg>foreignObject>section ul ol,div#p>svg>foreignObject>section ul ul{margin-bottom:0;margin-top:0}div#p>svg>foreignObject>section li{word-wrap:break-all}div#p>svg>foreignObject>section li>p{margin-top:16px}div#p>svg>foreignObject>section li+li{margin-top:.25em}div#p>svg>foreignObject>section dl{padding:0}div#p>svg>foreignObject>section dl dt{font-size:1em;font-style:italic;font-weight:600;margin-top:16px;padding:0}div#p>svg>foreignObject>section dl dd{margin-bottom:16px;padding:0 16px}div#p>svg>foreignObject>section table{display:block;overflow:auto;width:100%}div#p>svg>foreignObject>section table th{font-weight:600}div#p>svg>foreignObject>section table td,div#p>svg>foreignObject>section table th{border:1px solid #dfe2e5;padding:6px 13px}div#p>svg>foreignObject>section table tr{background-color:#fff;border-top:1px solid #c6cbd1}div#p>svg>foreignObject>section table tr:nth-child(2n){background-color:#f6f8fa}div#p>svg>foreignObject>section img{background-color:#fff;box-sizing:content-box;max-width:100%}div#p>svg>foreignObject>section img[align=right]{padding-left:20px}div#p>svg>foreignObject>section img[align=left]{padding-right:20px}div#p>svg>foreignObject>section code{background-color:rgba(27,31,35,.05);border-radius:3px;font-size:85%;margin:0;padding:.2em .4em}div#p>svg>foreignObject>section pre{word-wrap:normal}div#p>svg>foreignObject>section pre>code{background:transparent;border:0;font-size:100%;margin:0;padding:0;white-space:pre;word-break:normal}div#p>svg>foreignObject>section .highlight{margin-bottom:16px}div#p>svg>foreignObject>section .highlight pre{margin-bottom:0;word-break:normal}div#p>svg>foreignObject>section pre{background-color:#f6f8fa;border-radius:3px;font-size:85%;line-height:1.45;overflow:auto;padding:16px}div#p>svg>foreignObject>section pre code{background-color:transparent;border:0;display:inline;line-height:inherit;margin:0;max-width:auto;overflow:visible;padding:0;word-wrap:normal}div#p>svg>foreignObject>section .commit-tease-sha{color:#444d56;display:inline-block;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:90%}div#p>svg>foreignObject>section .blob-wrapper{border-bottom-left-radius:3px;border-bottom-right-radius:3px;overflow-x:auto;overflow-y:hidden}div#p>svg>foreignObject>section .blob-wrapper-embedded{max-height:240px;overflow-y:auto}div#p>svg>foreignObject>section .blob-num{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;color:rgba(27,31,35,.3);cursor:pointer;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;line-height:20px;min-width:50px;padding-left:10px;padding-right:10px;text-align:right;user-select:none;vertical-align:top;white-space:nowrap;width:1%}div#p>svg>foreignObject>section .blob-num:hover{color:rgba(27,31,35,.6)}div#p>svg>foreignObject>section .blob-num:before{content:attr(data-line-number)}div#p>svg>foreignObject>section .blob-code{line-height:20px;padding-left:10px;padding-right:10px;position:relative;vertical-align:top}div#p>svg>foreignObject>section .blob-code-inner{color:#24292e;font-family:SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;font-size:12px;overflow:visible;white-space:pre;word-wrap:normal}div#p>svg>foreignObject>section .pl-token.active,div#p>svg>foreignObject>section .pl-token:hover{background:#ffea7f;cursor:pointer}div#p>svg>foreignObject>section kbd{background-color:#fafbfc;border:1px solid #d1d5da;border-bottom-color:#c6cbd1;border-radius:3px;box-shadow:inset 0 -1px 0 #c6cbd1;color:#444d56;display:inline-block;font:11px SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;line-height:10px;padding:3px 5px;vertical-align:middle}div#p>svg>foreignObject>section :checked+.radio-label{border-color:#0366d6;position:relative;z-index:1}div#p>svg>foreignObject>section .tab-size[data-tab-size="1"]{-moz-tab-size:1;-o-tab-size:1;tab-size:1}div#p>svg>foreignObject>section .tab-size[data-tab-size="2"]{-moz-tab-size:2;-o-tab-size:2;tab-size:2}div#p>svg>foreignObject>section .tab-size[data-tab-size="3"]{-moz-tab-size:3;-o-tab-size:3;tab-size:3}div#p>svg>foreignObject>section .tab-size[data-tab-size="4"]{-moz-tab-size:4;-o-tab-size:4;tab-size:4}div#p>svg>foreignObject>section .tab-size[data-tab-size="5"]{-moz-tab-size:5;-o-tab-size:5;tab-size:5}div#p>svg>foreignObject>section .tab-size[data-tab-size="6"]{-moz-tab-size:6;-o-tab-size:6;tab-size:6}div#p>svg>foreignObject>section .tab-size[data-tab-size="7"]{-moz-tab-size:7;-o-tab-size:7;tab-size:7}div#p>svg>foreignObject>section .tab-size[data-tab-size="8"]{-moz-tab-size:8;-o-tab-size:8;tab-size:8}div#p>svg>foreignObject>section .tab-size[data-tab-size="9"]{-moz-tab-size:9;-o-tab-size:9;tab-size:9}div#p>svg>foreignObject>section .tab-size[data-tab-size="10"]{-moz-tab-size:10;-o-tab-size:10;tab-size:10}div#p>svg>foreignObject>section .tab-size[data-tab-size="11"]{-moz-tab-size:11;-o-tab-size:11;tab-size:11}div#p>svg>foreignObject>section .tab-size[data-tab-size="12"]{-moz-tab-size:12;-o-tab-size:12;tab-size:12}div#p>svg>foreignObject>section .task-list-item{list-style-type:none}div#p>svg>foreignObject>section .task-list-item+.task-list-item{margin-top:3px}div#p>svg>foreignObject>section .task-list-item input{margin:0 .2em .25em -1.6em;vertical-align:middle}div#p>svg>foreignObject>section hr{border-bottom-color:#eee}div#p>svg>foreignObject>section .pl-0{padding-left:0!important}div#p>svg>foreignObject>section .pl-1{padding-left:4px!important}div#p>svg>foreignObject>section .pl-2{padding-left:8px!important}div#p>svg>foreignObject>section .pl-3{padding-left:16px!important}div#p>svg>foreignObject>section .pl-4{padding-left:24px!important}div#p>svg>foreignObject>section .pl-5{padding-left:32px!important}div#p>svg>foreignObject>section .pl-6{padding-left:40px!important}div#p>svg>foreignObject>section .pl-7{padding-left:48px!important}div#p>svg>foreignObject>section .pl-8{padding-left:64px!important}div#p>svg>foreignObject>section .pl-9{padding-left:80px!important}div#p>svg>foreignObject>section .pl-10{padding-left:96px!important}div#p>svg>foreignObject>section .pl-11{padding-left:112px!important}div#p>svg>foreignObject>section .pl-12{padding-left:128px!important}div#p>svg>foreignObject>section .hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}div#p>svg>foreignObject>section .hljs-comment,div#p>svg>foreignObject>section .hljs-meta{color:#969896}div#p>svg>foreignObject>section .hljs-emphasis,div#p>svg>foreignObject>section .hljs-quote,div#p>svg>foreignObject>section .hljs-strong,div#p>svg>foreignObject>section .hljs-template-variable,div#p>svg>foreignObject>section .hljs-variable{color:#df5000}div#p>svg>foreignObject>section .hljs-keyword,div#p>svg>foreignObject>section .hljs-selector-tag,div#p>svg>foreignObject>section .hljs-type{color:#d73a49}div#p>svg>foreignObject>section .hljs-attribute,div#p>svg>foreignObject>section .hljs-bullet,div#p>svg>foreignObject>section .hljs-literal,div#p>svg>foreignObject>section .hljs-symbol{color:#0086b3}div#p>svg>foreignObject>section .hljs-name,div#p>svg>foreignObject>section .hljs-section{color:#63a35c}div#p>svg>foreignObject>section .hljs-tag{color:#333}div#p>svg>foreignObject>section .hljs-attr,div#p>svg>foreignObject>section .hljs-selector-attr,div#p>svg>foreignObject>section .hljs-selector-class,div#p>svg>foreignObject>section .hljs-selector-id,div#p>svg>foreignObject>section .hljs-selector-pseudo,div#p>svg>foreignObject>section .hljs-title{color:#6f42c1}div#p>svg>foreignObject>section .hljs-addition{color:#55a532;background-color:#eaffea}div#p>svg>foreignObject>section .hljs-deletion{color:#bd2c00;background-color:#ffecec}div#p>svg>foreignObject>section .hljs-link{text-decoration:underline}div#p>svg>foreignObject>section .hljs-number{color:#005cc5}div#p>svg>foreignObject>section .hljs-string{color:#032f62}div#p>svg>foreignObject>section svg[data-marp-fitting=svg]{max-height:563px}div#p>svg>foreignObject>section h1{color:#246;font-size:1.6em}div#p>svg>foreignObject>section h1,div#p>svg>foreignObject>section h2{border-bottom:none}div#p>svg>foreignObject>section h2{font-size:1.3em}div#p>svg>foreignObject>section h3{font-size:1.1em}div#p>svg>foreignObject>section h4{font-size:1.05em}div#p>svg>foreignObject>section h5{font-size:1em}div#p>svg>foreignObject>section h6{font-size:.9em}div#p>svg>foreignObject>section h1 strong,div#p>svg>foreignObject>section h2 strong,div#p>svg>foreignObject>section h3 strong,div#p>svg>foreignObject>section h4 strong,div#p>svg>foreignObject>section h5 strong,div#p>svg>foreignObject>section h6 strong{font-weight:inherit;color:#48c}div#p>svg>foreignObject>section hr{height:0;padding-top:.25em}div#p>svg>foreignObject>section pre{border:1px solid #999;line-height:1.15;overflow:visible}div#p>svg>foreignObject>section pre code svg[data-marp-fitting=svg]{max-height:529px}div#p>svg>foreignObject>section footer,div#p>svg>foreignObject>section header{margin:0;position:absolute;left:30px;color:hsla(0,0%,40%,.75);font-size:18px}div#p>svg>foreignObject>section header{top:21px}div#p>svg>foreignObject>section footer{bottom:21px}div#p>svg>foreignObject>section{-webkit-box-align:stretch;align-items:stretch;background:#fff;display:-webkit-box;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;flex-direction:column;flex-wrap:nowrap;font-size:29px;height:720px;-webkit-box-pack:center;justify-content:center;padding:78.5px;width:1280px}div#p>svg>foreignObject>section>:last-child,div#p>svg>foreignObject>section[data-footer]>:nth-last-child(2){margin-bottom:0}div#p>svg>foreignObject>section>:first-child,div#p>svg>foreignObject>section>header:first-child+*{margin-top:0}div#p>svg>foreignObject>section:after{position:absolute;padding:0;right:30px;bottom:21px;font-size:24px;color:#777}div#p>svg>foreignObject>section.invert{background-color:#222;color:#e6eaf0}div#p>svg>foreignObject>section.invert:after{color:#999}div#p>svg>foreignObject>section.invert img{background-color:transparent}div#p>svg>foreignObject>section.invert a{color:#50b3ff}div#p>svg>foreignObject>section.invert h1{color:#a3c5e7}div#p>svg>foreignObject>section.invert h2,div#p>svg>foreignObject>section.invert h3,div#p>svg>foreignObject>section.invert h4,div#p>svg>foreignObject>section.invert h5{color:#ebeff5}div#p>svg>foreignObject>section.invert blockquote,div#p>svg>foreignObject>section.invert h6{border-color:#3d3f43;color:#939699}div#p>svg>foreignObject>section.invert h1 strong,div#p>svg>foreignObject>section.invert h2 strong,div#p>svg>foreignObject>section.invert h3 strong,div#p>svg>foreignObject>section.invert h4 strong,div#p>svg>foreignObject>section.invert h5 strong,div#p>svg>foreignObject>section.invert h6 strong{color:#7bf}div#p>svg>foreignObject>section.invert hr{background-color:#3d3f43}div#p>svg>foreignObject>section.invert footer,div#p>svg>foreignObject>section.invert header{color:hsla(0,0%,60%,.75)}div#p>svg>foreignObject>section.invert code,div#p>svg>foreignObject>section.invert kbd{background-color:#111}div#p>svg>foreignObject>section.invert kbd{border-color:#666;box-shadow:inset 0 -1px 0 #555;color:#e6eaf0}div#p>svg>foreignObject>section.invert table tr{background-color:#12181d;border-color:#60657b}div#p>svg>foreignObject>section.invert table tr:nth-child(2n){background-color:#1b2024}div#p>svg>foreignObject>section.invert table td,div#p>svg>foreignObject>section.invert table th{border-color:#5b5e61}div#p>svg>foreignObject>section.invert pre{background-color:#0a0e12;border-color:#777}div#p>svg>foreignObject>section.invert pre code{background-color:transparent}div#p>svg>foreignObject>section[data-color] h1,div#p>svg>foreignObject>section[data-color] h2,div#p>svg>foreignObject>section[data-color] h3,div#p>svg>foreignObject>section[data-color] h4,div#p>svg>foreignObject>section[data-color] h5,div#p>svg>foreignObject>section[data-color] h6{color:currentColor}div#p>svg>foreignObject>section[data-marpit-scope-yGg2XrCV] h1,div#p>svg>foreignObject>section[data-marpit-scope-yGg2XrCV] h2{text-align:center}div#p>svg>foreignObject>section[data-marpit-scope-yGg2XrCV] h1{color:black;text-decoration:underline;font-size:3em}div#p>svg>foreignObject>section[data-marpit-scope-yGg2XrCV] h2{color:black;font-size:2em}div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h1,div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h2,div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h3{text-align:center}div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h1{color:black;text-decoration:underline;font-size:3em}div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h2{color:black;font-size:2em}div#p>svg>foreignObject>section[data-marpit-scope-qFqPPbns] h3{color:black;font-size:1.5em}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]{display:block!important;padding:0!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=background]:before,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:after,div#p>svg>foreignObject>section[data-marpit-advanced-background=content]:before{display:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]{all:initial;display:flex;flex-direction:row;height:100%;overflow:hidden;width:100%}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container][data-marpit-advanced-background-direction=vertical]{flex-direction:column}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split]>div[data-marpit-advanced-background-container]{width:var(--marpit-advanced-background-split,50%)}div#p>svg>foreignObject>section[data-marpit-advanced-background=background][data-marpit-advanced-background-split=right]>div[data-marpit-advanced-background-container]{margin-left:calc(100% - var(--marpit-advanced-background-split, 50%))}div#p>svg>foreignObject>section[data-marpit-advanced-background=background]>div[data-marpit-advanced-background-container]>figure{all:initial;background-position:center;background-repeat:no-repeat;background-size:cover;flex:auto;margin:0}div#p>svg>foreignObject>section[data-marpit-advanced-background=content],div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo]{background:transparent!important}div#p>svg>foreignObject>section[data-marpit-advanced-background=pseudo],div#p>svg[data-marpit-svg]>foreignObject[data-marpit-advanced-background=pseudo]{pointer-events:none!important}div#p>svg>foreignObject>section[data-marpit-advanced-background-split]{width:100%;height:100%}</style></head><body><div class="bespoke-marp-osc"><button data-bespoke-marp-osc="prev" tabindex="-1" title="Previous slide">Previous slide</button><span data-bespoke-marp-osc="page"></span><button data-bespoke-marp-osc="next" tabindex="-1" title="Next slide">Next slide</button><button data-bespoke-marp-osc="fullscreen" tabindex="-1" title="Toggle fullscreen (f)">Toggle fullscreen</button></div><div id="p"><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="1" data-marpit-scope-yGg2XrCV="" data-theme="default" style="--theme:default;">
+<h1>Advent of Code 19</h1>
+<h2><em>Takeaways and Go Behaviors</em></h2>
+<h2>Carson Anderson - Weave</h2>
+<h2><img src="img/github.png" alt="width:1em" style="width:1em;" /> carsonoid       <img src="img/twit.png" alt="width:1em" style="width:1em;" /> carson_ops</h2>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="2" data-paginate="true" data-theme="default" data-marpit-pagination="2" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 1 - Integer division</h1>
+<blockquote>
+<p>Fuel required to launch a given module is based on its mass. Specifically, to find the fuel required for &gt; a module, take its mass, divide by three, <strong>round down</strong>, and subtract 2.</p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="3" data-paginate="true" data-theme="default" data-marpit-pagination="3" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">var</span> mass = <span class="hljs-number">298</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	fmt.Println(<span class="hljs-string">"// Non-even division"</span>)
+	fmt.Println(<span class="hljs-keyword">float64</span>(mass) / <span class="hljs-number">3</span>)
+
+	fmt.Println(<span class="hljs-string">"// Round down via math.Floor"</span>)
+	fmt.Println(math.Floor(<span class="hljs-keyword">float64</span>(mass) / <span class="hljs-number">3</span>))
+
+	fmt.Println(<span class="hljs-string">"// Oh... int division in go rounds down by default :D"</span>)
+	fmt.Println(mass / <span class="hljs-number">3</span>)
+}
+
+<span class="hljs-comment">/* OUTPUT:
+// Non-even division
+99.33333333333333
+// Round down via math.Floor
+99
+// Oh... int division in go rounds down by default :D
+99
+*/</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/JfTkBHYdxeO">https://play.golang.org/p/JfTkBHYdxeO</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="4" data-paginate="true" data-theme="default" data-marpit-pagination="4" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 2 - Intocodde: Scanners vs Readers</h1>
+<blockquote>
+<p>Intcode programs are given as a list of integers</p>
+</blockquote>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">0</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">13</span>,<span class="hljs-number">1</span>,<span class="hljs-number">19</span>,<span class="hljs-number">1</span>,<span class="hljs-number">10</span>,<span class="hljs-number">19</span>,<span class="hljs-number">23</span>,<span class="hljs-number">1</span>,<span class="hljs-number">23</span>,<span class="hljs-number">9</span>,<span class="hljs-number">27</span>,<span class="hljs-number">1</span>,<span class="hljs-number">5</span>,<span class="hljs-number">27</span>,<span class="hljs-number">31</span>,<span class="hljs-number">2</span>,<span class="hljs-number">31</span>,<span class="hljs-number">13</span>,<span class="hljs-number">35</span>,<span class="hljs-number">1</span>,<span class="hljs-number">35</span>,<span class="hljs-number">5</span>,<span class="hljs-number">39</span>,<span class="hljs-number">1</span>,<span class="hljs-number">39</span>,<span class="hljs-number">5</span>,<span class="hljs-number">43</span>,<span class="hljs-number">2</span>,...
+</span></span></foreignObject></svg></code></pre>
+<p>The input for this day was a single line. And could potentially get very, very long. So it was important to understand the difference between readers and scanners.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-theme="default" data-marpit-pagination="5" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>Scanners</h3>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// Make a test reader with a bad line</span>
+file := strings.NewReader(<span class="hljs-string">""</span> + <span class="hljs-comment">// Empty add to make fmt clean</span>
+    <span class="hljs-string">"1\n2\n3\n"</span> +
+    strings.Repeat(<span class="hljs-string">"4"</span>, bufio.MaxScanTokenSize+<span class="hljs-number">1</span>) +
+    <span class="hljs-string">"\n5\n6\n"</span>,
+)
+
+<span class="hljs-comment">// Scanners: </span>
+<span class="hljs-comment">// * Read up to a newline</span>
+<span class="hljs-comment">// * Don't include the newline in the text</span>
+<span class="hljs-comment">// * Have a default line length limit of 64K (Can be increased manually)</span>
+<span class="hljs-comment">//    * Will return an empty line if it's too long</span>
+<span class="hljs-comment">//    * Check for scanner.Err() == bufio.ErrTooLong to catch this</span>
+scanner := bufio.NewScanner(file)
+<span class="hljs-keyword">for</span> scanner.Scan() {
+    fmt.Println(scanner.Text())
+}
+fmt.Println(scanner.Err())
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/KOgOzt_-ROV">https://play.golang.org/p/KOgOzt_-ROV</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-theme="default" data-marpit-pagination="6" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>Readers</h3>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// Make a test reader with a bad line</span>
+file := strings.NewReader(<span class="hljs-string">""</span> + <span class="hljs-comment">// Empty add to make fmt clean</span>
+    <span class="hljs-string">"1\n2\n3\n"</span> +
+    strings.Repeat(<span class="hljs-string">"4"</span>, bufio.MaxScanTokenSize+<span class="hljs-number">1</span>) +
+    <span class="hljs-string">"\n5\n6"</span>,
+)
+
+<span class="hljs-comment">// Readers:</span>
+<span class="hljs-comment">// * Can read many ways: all, byte, bytes, rune, string, slice, line</span>
+<span class="hljs-comment">// * May or may not include delimiters, depeding on read method so check docs</span>
+reader := bufio.NewReader(file)
+<span class="hljs-keyword">for</span> {
+    text, err := reader.ReadString(<span class="hljs-keyword">byte</span>(<span class="hljs-string">'\n'</span>))
+    text = strings.TrimRight(text, <span class="hljs-string">"\n"</span>)
+    fmt.Println(text)
+
+    <span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+        <span class="hljs-keyword">if</span> errors.Is(err, io.EOF) {
+            <span class="hljs-keyword">break</span>
+        }
+        <span class="hljs-built_in">panic</span>(err)
+    }
+}
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/fcaBp7G8L5D">https://play.golang.org/p/fcaBp7G8L5D</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-theme="default" data-marpit-pagination="7" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>Result</h3>
+<p>Final intcode parsing function</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getIntCode</span><span class="hljs-params">(filePath <span class="hljs-keyword">string</span>)</span> []<span class="hljs-title">uint64</span></span> {
+	file, err := os.Open(filePath)
+	<span class="hljs-keyword">defer</span> file.Close()
+	<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+		<span class="hljs-built_in">panic</span>(err)
+	}
+
+	reader := bufio.NewReader(file)
+
+	<span class="hljs-keyword">var</span> data []<span class="hljs-keyword">uint64</span>
+	<span class="hljs-keyword">for</span> {
+		dataPoint, err := reader.ReadString(<span class="hljs-string">','</span>)
+		dataPoint = strings.Trim(dataPoint, <span class="hljs-string">","</span>)
+
+		u, err := strconv.ParseUint(dataPoint, <span class="hljs-number">10</span>, <span class="hljs-number">64</span>)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+			<span class="hljs-keyword">break</span>
+		}
+		data = <span class="hljs-built_in">append</span>(data, u)
+	}
+
+	<span class="hljs-keyword">return</span> data
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-theme="default" data-marpit-pagination="8" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 3</h1>
+<blockquote>
+<p>For example, if the first wire's path is R8,U5,L5,D3,<br />
+then starting from the central port (o), it goes right 8, up 5, left 5, and finally down 3:</p>
+</blockquote>
+<p>More parsing fun! The first step was to convert lines of instruction strings to slices of instructions. Reading the input by lines and further splitting by strings was easy! But how to convert <code>R75</code> to a struct? Runes to the rescue!</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-theme="default" data-marpit-pagination="9" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">type</span> instruction <span class="hljs-keyword">struct</span> {
+	direction <span class="hljs-keyword">rune</span>
+	distance  <span class="hljs-keyword">int64</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getInstructionsFromString</span><span class="hljs-params">(in <span class="hljs-keyword">string</span>)</span> []<span class="hljs-title">instruction</span></span> {
+	stringInstructions := strings.Split(in, <span class="hljs-string">","</span>)
+	<span class="hljs-keyword">var</span> instructions []instruction
+	<span class="hljs-keyword">for</span> _, sInst := <span class="hljs-keyword">range</span> stringInstructions {
+		runes := []<span class="hljs-keyword">rune</span>(sInst)
+		direction := runes[<span class="hljs-number">0</span>]
+		distance, err := strconv.ParseInt(sInst[<span class="hljs-number">1</span>:], <span class="hljs-number">10</span>, <span class="hljs-number">64</span>)
+		<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+			<span class="hljs-keyword">break</span>
+		}
+		instructions = <span class="hljs-built_in">append</span>(instructions, instruction{
+			direction: direction,
+			distance:  distance,
+		})
+	}
+	<span class="hljs-keyword">return</span> instructions
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-theme="default" data-marpit-pagination="10" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>Be wary of the default stringification of runes though...</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// R75,D30,R83,U83,L12,D49,R71,U7,L72</span>
+[]main.instruction{
+		main.instruction{direction: <span class="hljs-number">82</span>, distance: <span class="hljs-number">75</span>},
+		main.instruction{direction: <span class="hljs-number">68</span>, distance: <span class="hljs-number">30</span>},
+		main.instruction{direction: <span class="hljs-number">82</span>, distance: <span class="hljs-number">83</span>},
+		main.instruction{direction: <span class="hljs-number">85</span>, distance: <span class="hljs-number">83</span>},
+		main.instruction{direction: <span class="hljs-number">76</span>, distance: <span class="hljs-number">12</span>},
+		main.instruction{direction: <span class="hljs-number">68</span>, distance: <span class="hljs-number">49</span>},
+		main.instruction{direction: <span class="hljs-number">82</span>, distance: <span class="hljs-number">71</span>},
+		main.instruction{direction: <span class="hljs-number">85</span>, distance: <span class="hljs-number">7</span>},
+		main.instruction{direction: <span class="hljs-number">76</span>, distance: <span class="hljs-number">72</span>},
+	}
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/CEtf-SBKppL">https://play.golang.org/p/CEtf-SBKppL</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-theme="default" data-marpit-pagination="11" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 4 - Irregular Regex</h1>
+<p>Find the password that fits a given set of rules. Most  were easy, but...</p>
+<blockquote>
+<p>Two adjacent digits are the same (like 22 in 122345).</p>
+</blockquote>
+<p>I tried to use a regex like <code>(\d)\1</code> to test for doubles. Suddenly, no compilation:</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-type">unknown</span> <span class="hljs-keyword">escape</span> <span class="hljs-keyword">sequence</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-theme="default" data-marpit-pagination="12" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>It turns out that Go uses the RE2 engine, which doesn't support backreferences. So you are not able to to do anything like: <code>(\d)\1</code> to test for doubles.</p>
+<p>Reasoning from <a href="https://swtch.com/~rsc/regexp/regexp3.html">https://swtch.com/~rsc/regexp/regexp3.html</a>. Emhpasis added.</p>
+<blockquote>
+<p>RE2 disallows PCRE features that cannot be implemented efficiently using automata. <strong>(The most notable such feature is backreferences.)</strong> In return for giving up these difficult to implement (and often incorrectly used) features, RE2 can provably analyze the regular expressions or the automata. We've already seen examples of analysis for use in RE2 itself, in the DFA's use of memchr and in the analysis of whether a regular expression is one-pass. <strong>RE2 can also provide analyses that let higher-level applications speed searches.</strong></p>
+</blockquote>
+<p><strong>Translation: No backreferences or other complex things so we can ensure a linear parse time.</strong></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-theme="default" data-marpit-pagination="13" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 7 - Amplifiers In A Row</h1>
+<p>More use of the intcode computer. But this time the problem required more than one to run. And for some fun connections:</p>
+<blockquote>
+<p>There are five amplifiers connected in series; each one receives an input signal and produces an output signal. They are connected such that the first amplifier's output leads to the second amplifier's input, ...</p>
+</blockquote>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>    <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>
+<span class="hljs-comment">0</span> <span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">Amp</span> <span class="hljs-comment">A</span> <span class="hljs-comment">|</span><span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">Amp</span> <span class="hljs-comment">B</span> <span class="hljs-comment">|</span><span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">Amp</span> <span class="hljs-comment">C</span> <span class="hljs-comment">|</span><span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">Amp</span> <span class="hljs-comment">D</span> <span class="hljs-comment">|</span><span class="hljs-literal">-</span>&gt;<span class="hljs-comment">|</span> <span class="hljs-comment">Amp</span> <span class="hljs-comment">E</span> <span class="hljs-comment">|</span><span class="hljs-literal">-</span>&gt; <span class="hljs-comment">(to</span> <span class="hljs-comment">thrusters)</span>
+    <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>  <span class="hljs-comment">O</span>--<span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-literal">-</span><span class="hljs-comment">O</span>
+</span></span></foreignObject></svg></code></pre>
+<p>So run 5 computers in a row, passing the output of one into the input of another. Easy!</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-paginate="true" data-theme="default" data-marpit-pagination="14" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h2>A Wild Part 2 Appears:</h2>
+<blockquote>
+<p>The Elves quickly talk you through rewiring the amplifiers into a feedback loop:</p>
+</blockquote>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>      O-------O  O-------O  O-------O  O-------O  O-------O
+0 -+-&gt;|<span class="hljs-string"> Amp A </span>|<span class="hljs-string">-&gt;</span>|<span class="hljs-string"> Amp B </span>|<span class="hljs-string">-&gt;</span>|<span class="hljs-string"> Amp C </span>|<span class="hljs-string">-&gt;</span>|<span class="hljs-string"> Amp D </span>|<span class="hljs-string">-&gt;</span>|<span class="hljs-string"> Amp E </span>|<span class="hljs-string">-.
+   </span>|<span class="hljs-string">  O-------O  O-------O  O-------O  O-------O  O-------O </span>|
+   |<span class="hljs-string">                                                        </span>|
+   '--------------------------------------------------------+
+                                                            |<span class="hljs-string">
+                                                            v
+                                                     (to thrusters)
+</span></span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-paginate="true" data-theme="default" data-marpit-pagination="15" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Channels!</h1>
+<p>With channels, we can actually &quot;wire&quot; the amps together in code and let them run at their own pace concurrently. Not a requirement, but pretty cool!</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-theme="default" data-marpit-pagination="16" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">type</span> amplifier <span class="hljs-keyword">struct</span> {
+	id       <span class="hljs-keyword">int</span>
+	memory   []<span class="hljs-keyword">int64</span>
+	input    <span class="hljs-keyword">chan</span> <span class="hljs-keyword">int64</span>
+	output   <span class="hljs-keyword">chan</span> <span class="hljs-keyword">int64</span>
+	phase    <span class="hljs-keyword">int64</span>
+	phaseSet <span class="hljs-keyword">bool</span>
+	result   <span class="hljs-keyword">int64</span>
+	quit     <span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>{}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">newAmplifier</span><span class="hljs-params">(id <span class="hljs-keyword">int</span>, code []<span class="hljs-keyword">int64</span>, phase <span class="hljs-keyword">int64</span>)</span> *<span class="hljs-title">amplifier</span></span> {
+	a := amplifier{
+		id:     id,
+		memory: <span class="hljs-built_in">make</span>([]<span class="hljs-keyword">int64</span>, <span class="hljs-built_in">len</span>(code)),
+        phase:  phase,
+		output: <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">int64</span>, <span class="hljs-number">1</span>),
+		quit:   <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>{}),
+	}
+	<span class="hljs-built_in">copy</span>(a.memory, code)
+	<span class="hljs-keyword">return</span> &amp;a
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-theme="default" data-marpit-pagination="17" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// Setup amplifiers</span>
+amps := <span class="hljs-built_in">make</span>([]*amplifier, numAmps)
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; numAmps; i++ {
+    amps[i] = newAmplifier(i, code, phasePerm[i])
+}
+
+<span class="hljs-comment">// Link inputs to outputs</span>
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; numAmps; i++ {
+    <span class="hljs-keyword">if</span> i == <span class="hljs-number">0</span> { <span class="hljs-comment">// link first amp input to last amp output</span>
+        amps[i].input = amps[<span class="hljs-built_in">len</span>(amps)<span class="hljs-number">-1</span>].output
+    } <span class="hljs-keyword">else</span> { <span class="hljs-comment">// link to previous amp input to current amp output</span>
+        amps[i].input = amps[i<span class="hljs-number">-1</span>].output
+    }
+}
+
+<span class="hljs-comment">// Start amps</span>
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; numAmps; i++ {
+    <span class="hljs-keyword">go</span> amps[i].start()
+}
+
+<span class="hljs-comment">// Send start signal to first amp to begin processing</span>
+amps[<span class="hljs-number">0</span>].input &lt;- <span class="hljs-number">0</span>
+
+<span class="hljs-comment">// Wait for amps to close</span>
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; numAmps; i++ {
+    &lt;-amps[i].quit
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-paginate="true" data-theme="default" data-marpit-pagination="18" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 8 - Runes to ints and Unicode!</h1>
+<p>Render an image sent to you.</p>
+<blockquote>
+<p>Images are sent as a series of digits that each represent the color of a single pixel. The digits fill each row of the image left-to-right, then move downward to the next row, filling rows top-to-bottom until every pixel of the image is filled.</p>
+</blockquote>
+<h3>Runes</h3>
+<p>Another case where inputs could be very long lines. Time to use a reader! One rune at a time. (Hindsight: probably should have used ReadByte or converted to a string and then int for proper error checking)</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-paginate="true" data-theme="default" data-marpit-pagination="19" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>This code converts a rune for 0-9 to an int. But it will fail silently for runes out of range.</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>r, _, err := reader.ReadRune()
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    <span class="hljs-built_in">panic</span>(err)
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> r == <span class="hljs-string">'\n'</span> {
+    <span class="hljs-keyword">break</span>
+}
+pixel := <span class="hljs-keyword">int</span>(r - <span class="hljs-string">'0'</span>) 
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-paginate="true" data-theme="default" data-marpit-pagination="20" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>pixel := <span class="hljs-keyword">int</span>(r - <span class="hljs-string">'0'</span>) 
+</span></span></foreignObject></svg></code></pre>
+<p>Uhh. what is that thing? Turns out it is just convenient ascii math.</p>
+<table>
+<thead>
+<tr>
+<th>CODE</th>
+<th>CHAR</th>
+<th></th>
+<th>CODE</th>
+<th>CHAR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>48</td>
+<td>0</td>
+<td></td>
+<td>53</td>
+<td>5</td>
+</tr>
+<tr>
+<td>49</td>
+<td>1</td>
+<td></td>
+<td>54</td>
+<td>6</td>
+</tr>
+<tr>
+<td>50</td>
+<td>2</td>
+<td></td>
+<td>55</td>
+<td>7</td>
+</tr>
+<tr>
+<td>51</td>
+<td>3</td>
+<td></td>
+<td>56</td>
+<td>8</td>
+</tr>
+<tr>
+<td>52</td>
+<td>4</td>
+<td></td>
+<td>57</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-paginate="true" data-theme="default" data-marpit-pagination="21" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>fmt.Printf(<span class="hljs-string">"%d\n"</span>, <span class="hljs-string">'1'</span>)                              <span class="hljs-comment">// Prints ascii code for '1'</span>
+fmt.Printf(<span class="hljs-string">"%d - %d = %d\n"</span>, <span class="hljs-string">'1'</span>, <span class="hljs-string">'0'</span>, <span class="hljs-keyword">int</span>(<span class="hljs-string">'1'</span>-<span class="hljs-string">'0'</span>)) <span class="hljs-comment">// Prints expected int</span>
+fmt.Printf(<span class="hljs-string">"%d - %d = %d\n"</span>, <span class="hljs-string">'A'</span>, <span class="hljs-string">'0'</span>, <span class="hljs-keyword">int</span>(<span class="hljs-string">'A'</span>-<span class="hljs-string">'0'</span>)) <span class="hljs-comment">// Silent failure of logic</span>
+
+<span class="hljs-comment">// convert allowed runes</span>
+digit, err := strconv.Atoi(<span class="hljs-keyword">string</span>(<span class="hljs-string">'1'</span>))
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    <span class="hljs-built_in">panic</span>(err)
+}
+fmt.Printf(<span class="hljs-string">"%d\n"</span>, digit)
+
+<span class="hljs-comment">// properly catch bad runes</span>
+digit, err = strconv.Atoi(<span class="hljs-keyword">string</span>(<span class="hljs-string">'A'</span>))
+<span class="hljs-keyword">if</span> err != <span class="hljs-literal">nil</span> {
+    fmt.Printf(<span class="hljs-string">"error: '%v' cannot be converted to a digit"</span>, <span class="hljs-keyword">string</span>(<span class="hljs-string">'A'</span>))
+}
+
+<span class="hljs-comment">/* OUTPUT:
+49
+49 - 48 = 1
+65 - 48 = 17
+1
+error: 'A' cannot be converted to a digit
+*/</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/mKCo7SsOF2l">https://play.golang.org/p/mKCo7SsOF2l</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-paginate="true" data-theme="default" data-marpit-pagination="22" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>Also: Unicode</h3>
+<p>Cleaner visuals!</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>	<span class="hljs-keyword">for</span> _, pixel := <span class="hljs-keyword">range</span> rendered { <span class="hljs-comment">// loop over a slice of ints.</span>
+		curWidth++
+		<span class="hljs-keyword">switch</span> pixel {
+		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+			fmt.Printf(<span class="hljs-string">"\u2591"</span>) <span class="hljs-comment">// Shaded block</span>
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+			fmt.Printf(<span class="hljs-string">"\u2588"</span>) <span class="hljs-comment">// Full Block</span>
+		}
+		<span class="hljs-keyword">if</span> curWidth%imgWidth == <span class="hljs-number">0</span> {
+			fmt.Printf(<span class="hljs-string">"\n"</span>)
+		}
+    }
+
+<span class="hljs-comment">/*
+████░█░░░░███░░░░██░████░
+░░░█░█░░░░█░░█░░░░█░█░░░░
+░░█░░█░░░░███░░░░░█░███░░
+░█░░░█░░░░█░░█░░░░█░█░░░░
+█░░░░█░░░░█░░█░█░░█░█░░░░
+████░████░███░░░██░░█░░░░
+*/</span>
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-marpit-fragments="1" data-paginate="true" data-theme="default" data-marpit-pagination="23" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>About that output....</h3>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>████░█░░░░███░░░░██░████░
+░░░█░█░░░░█░░█░░░░█░█░░░░
+░░█░░█░░░░███░░░░░█░███░░
+░█░░░█░░░░█░░█░░░░█░█░░░░
+█░░░░█░░░░█░░█░█░░█░█░░░░
+████░████░███░░░██░░█░░░░
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li data-marpit-fragment="1">It wasn't until a later day that I finally realized why I couldn't find a unicode character for an empty block...</li>
+</ul>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-paginate="true" data-theme="default" data-marpit-pagination="24" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>███
+██  &lt;-<span class="hljs-comment">-- It's a called a "space". I am dumb.</span>
+███
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-paginate="true" data-theme="default" data-marpit-pagination="25" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 5 - Custom Types for Compilation Safety</h1>
+<blockquote>
+<p>... you'll need to add support for parameter modes:</p>
+<p>Each parameter of an instruction is handled based on its parameter mode. ...<br />
+Parameter modes are stored in the same value as the instruction's opcode. The opcode is a two-digit number based only on the ones and tens digit of the value, that is, the opcode is the rightmost two digits of the first value in an instruction. Parameter modes are single digits, one per parameter, read right-to-left from the opcode:</p>
+</blockquote>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-paginate="true" data-theme="default" data-marpit-pagination="26" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<blockquote>
+<p>The first instruction, 1002,4,3,4, is a multiply instruction - the rightmost two digits of the first value, 02, indicate opcode 2, multiplication. Then, going right to left, the parameter modes are 0 (hundreds digit), 1 (thousands digit), and 0 (ten-thousands digit, not present and therefore zero):</p>
+</blockquote>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap>ABCDE
+ <span class="hljs-number">1002</span>
+
+DE - two-digit opcode,      <span class="hljs-number">02</span> == opcode <span class="hljs-number">2</span>
+ C - mode of <span class="hljs-number">1</span>st parameter,  <span class="hljs-number">0</span> == position mode
+ B - mode of <span class="hljs-number">2</span>nd parameter,  <span class="hljs-number">1</span> == immediate mode
+ A - mode of <span class="hljs-number">3</span>rd parameter,  <span class="hljs-number">0</span> == position mode,
+                                  omitted due to being a leading zero
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-paginate="true" data-theme="default" data-marpit-pagination="27" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>So now intcode has 3 different &quot;kinds&quot; of <code>int</code>:</p>
+<ul>
+<li>values</li>
+<li>operational codes</li>
+<li>parameter modes.</li>
+</ul>
+<p>But they are all <code>int</code> to the compiler by default. That means we open ourselves up to cases where the default type checking in the compiler will fail to find issues at compile time. Let's fix it with custom types!</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-paginate="true" data-theme="default" data-marpit-pagination="28" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">type</span> OpCode <span class="hljs-keyword">int</span>
+
+<span class="hljs-keyword">const</span> (
+	OpCodeAdd         OpCode = <span class="hljs-number">1</span>
+	OpCodeMultiply    OpCode = <span class="hljs-number">2</span>
+	OpCodeInput       OpCode = <span class="hljs-number">3</span>
+	OpCodeOutput      OpCode = <span class="hljs-number">4</span>
+	OpCodeJumpIfTrue  OpCode = <span class="hljs-number">5</span>
+	OpCodeJumpIfFalse OpCode = <span class="hljs-number">6</span>
+	OpCodeLessThan    OpCode = <span class="hljs-number">7</span>
+	OpCodeEquals      OpCode = <span class="hljs-number">8</span>
+	OpCodeRelPos      OpCode = <span class="hljs-number">9</span>
+	OpCodeQuit        OpCode = <span class="hljs-number">99</span>
+)
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getOpCode</span><span class="hljs-params">(m <span class="hljs-keyword">int64</span>)</span> <span class="hljs-title">OpCode</span></span> {
+	<span class="hljs-keyword">switch</span> m {
+	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+		<span class="hljs-keyword">return</span> OpCodeAdd
+	<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:
+		<span class="hljs-keyword">return</span> OpCodeMultiply
+	...
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-paginate="true" data-theme="default" data-marpit-pagination="29" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">type</span> Mode <span class="hljs-keyword">int</span>
+
+<span class="hljs-keyword">const</span> (
+	ModePosition  Mode = <span class="hljs-number">0</span>
+	ModeImmediate Mode = <span class="hljs-number">1</span>
+	ModeRelative  Mode = <span class="hljs-number">2</span>
+)
+
+<span class="hljs-keyword">type</span> operation <span class="hljs-keyword">struct</span> {
+	opCode OpCode
+	modes  []Mode
+	params []<span class="hljs-keyword">int64</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getMode</span><span class="hljs-params">(m <span class="hljs-keyword">int64</span>)</span> <span class="hljs-title">Mode</span></span> {
+	<span class="hljs-keyword">switch</span> m {
+	<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>:
+		<span class="hljs-keyword">return</span> ModePosition
+	<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:
+		<span class="hljs-keyword">return</span> ModeImmediate
+	...
+}
+</span></span></foreignObject></svg></code></pre>
+<p>Now we can catch more errors at compile time and get more readable code to boot!</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-paginate="true" data-theme="default" data-marpit-pagination="30" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h3>Side Note</h3>
+<p>You can define methods for custom types</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(m Mode)</span> <span class="hljs-title">Print</span><span class="hljs-params">()</span></span> {
+	fmt.Println(m)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+	m := Mode(<span class="hljs-number">2</span>)
+	m.Print()
+}
+<span class="hljs-comment">/* OUTPUT:
+main.Mode
+2
+*/</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/eXchfaKqcBg">https://play.golang.org/p/eXchfaKqcBg</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-paginate="true" data-theme="default" data-marpit-pagination="31" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 11 - First &quot;Screen&quot; to draw</h1>
+<p>Graphics libraries have 0,0 as the top,left corner for a reason! It's hard to print rows of pixels starting from the center... So you have to store your &quot;screen&quot; as a slice of slice and print top-to-bottom and left-to-right from zero both ways.</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">print</span><span class="hljs-params">(screen [][]<span class="hljs-keyword">int</span>)</span></span> {
+	<span class="hljs-keyword">for</span> y := <span class="hljs-keyword">range</span> screen {
+		<span class="hljs-keyword">for</span> x := <span class="hljs-keyword">range</span> screen[row] {
+			fmt.<span class="hljs-built_in">println</span>(screen[y][x])
+		}
+	}
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="32" data-paginate="true" data-theme="default" data-marpit-pagination="32" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 13 - No good graphical rendering in go.</h1>
+<p>Lots of printing out the whole map and then clearing the screen with some special chars.</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">var</span> screen [][]<span class="hljs-keyword">int64</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Draw</span><span class="hljs-params">(c *computer)</span></span> {
+	frames := <span class="hljs-number">0</span>
+	<span class="hljs-keyword">for</span> <span class="hljs-keyword">range</span> c.<span class="hljs-built_in">print</span> { <span class="hljs-comment">// print on demand until channel is closed</span>
+		os.Stdout.Write([]<span class="hljs-keyword">byte</span>{<span class="hljs-number">0x1B</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x3B</span>, <span class="hljs-number">0x4A</span>, <span class="hljs-number">0x1B</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x48</span>, <span class="hljs-number">0x1B</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x32</span>, <span class="hljs-number">0x4A</span>})
+		frames++
+		fmt.Println(<span class="hljs-string">"FRAMES"</span>, frames)
+		<span class="hljs-keyword">for</span> y := <span class="hljs-keyword">range</span> screen {
+			<span class="hljs-keyword">for</span> _, tileID := <span class="hljs-keyword">range</span> screen[y] {
+				fmt.Printf(GetTile(tileID))
+			}
+			fmt.Println()
+		}
+		fmt.Println(<span class="hljs-string">"SCORE:"</span>, score)
+	}
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="33" data-paginate="true" data-theme="default" data-marpit-pagination="33" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h1>Day 23 - Channels, goroutines, and Races</h1>
+<blockquote>
+<p>What is the first Y value delivered by the NAT to the computer at address 0 twice in a row?</p>
+</blockquote>
+<p>Taking the advices of Tod Hansmann, I had converted my the input and output processes of my <code>intcode</code> computer to be functions instead of using channels directly. But I suddenly had ordering issues.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="34" data-paginate="true" data-theme="default" data-marpit-pagination="34" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>Anonymous functions can be very cool. But they come with their own risks:</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-comment">// Make a channel to wait for all goroutines to complete</span>
+done := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>{}, iters) <span class="hljs-comment">// fully buffer done channel for zero memory cost</span>
+
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; iters; i++ {
+    <span class="hljs-comment">// Start the goroutine</span>
+    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(out <span class="hljs-keyword">int</span>)</span></span> {
+
+        <span class="hljs-comment">// Defer a send to the done chanel to make sure panics don't cause problems</span>
+        <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {
+            done &lt;- <span class="hljs-keyword">struct</span>{}{}
+        }()
+
+        <span class="hljs-comment">// Print the "i" loop variable, and the "out" function parameter value</span>
+        fmt.Printf(<span class="hljs-string">"i: %d, out: %d\n"</span>, i, out)
+    }(i) <span class="hljs-comment">// pass i as the parameter (will be passed by copy)</span>
+}
+
+<span class="hljs-comment">// wait for all funcs to complete. </span>
+<span class="hljs-comment">// Note that it's 100% possible that all funcs are done before we even get to </span>
+<span class="hljs-comment">// this part of the code. Thanks to the fully buffered channel.</span>
+<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; iters; i++ {
+    &lt;-done
+}
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/-MfJu31Set8">https://play.golang.org/p/-MfJu31Set8</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="35" data-paginate="true" data-theme="default" data-marpit-pagination="35" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>Results:</p>
+<pre><code><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">9</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">0</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">1</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">2</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">3</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">4</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">5</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">6</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">7</span>
+<span class="hljs-attr">i:</span> <span class="hljs-number">10</span><span class="hljs-string">,</span> <span class="hljs-attr">out:</span> <span class="hljs-number">8</span>
+</span></span></foreignObject></svg></code></pre>
+<ul>
+<li>The output changes order every time.</li>
+<li>The loop variable is usually, but not always, the value from the end of the loop and should not be used.</li>
+<li><code>go vet</code> would catch this.</li>
+</ul>
+<p>Also, getting ordered output kind of goes against the whole concept of goroutines.</p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="36" data-paginate="true" data-theme="default" data-marpit-pagination="36" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<p>And after I did all the work with channels and returns...</p>
+<p>And then I learned about waitgroups... <a href="https://gobyexample.com/waitgroups">https://gobyexample.com/waitgroups</a></p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">worker</span><span class="hljs-params">(id <span class="hljs-keyword">int</span>, wg *sync.WaitGroup)</span></span> {
+    fmt.Printf(<span class="hljs-string">"Worker %d starting\n"</span>, id)
+
+    time.Sleep(time.Second)
+    fmt.Printf(<span class="hljs-string">"Worker %d done\n"</span>, id)
+
+    wg.Done()
+}
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+
+    <span class="hljs-keyword">var</span> wg sync.WaitGroup
+
+    <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++ {
+        wg.Add(<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">go</span> worker(i, &amp;wg)
+    }
+
+    wg.Wait()
+}
+</span></span></foreignObject></svg></code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="37" data-paginate="true" data-theme="default" data-marpit-pagination="37" data-marpit-pagination-total="38" style="--paginate:true;--theme:default;">
+<h2>Side Note - Empty structs are neat!</h2>
+<p>Empty structs take up zero memory. And are great for buffered channels!</p>
+<pre><code class="language-golang"><svg data-marp-fitting="svg" data-marp-fitting-code><foreignObject><span data-marp-fitting-svg-content><span data-marp-fitting-svg-content-wrap><span class="hljs-keyword">var</span> iters = <span class="hljs-number">10</span>
+
+<span class="hljs-comment">// Chans of empty structs take up zero bytes of mem!</span>
+done := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>{}, iters) <span class="hljs-comment">// buffer iters</span>
+elemSize := unsafe.Sizeof(<span class="hljs-keyword">struct</span>{}{})
+fmt.Printf(<span class="hljs-string">"done size in memory: %d\n"</span>, unsafe.Sizeof(done))
+fmt.Printf(<span class="hljs-string">"done buffer size in memory: %d\n"</span>, <span class="hljs-keyword">uint64</span>(iters)*<span class="hljs-keyword">uint64</span>(elemSize))
+
+<span class="hljs-comment">// Compare to a chan of booleans</span>
+doneBool := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">bool</span>, iters) <span class="hljs-comment">// buffer iters as boolean</span>
+elemSize = unsafe.Sizeof(<span class="hljs-literal">true</span>)
+fmt.Printf(<span class="hljs-string">"doneBool size in memory: %d\n"</span>, unsafe.Sizeof(doneBool))
+fmt.Printf(<span class="hljs-string">"doneBool buffer size in memory: %d\n"</span>, <span class="hljs-keyword">uint64</span>(iters)*<span class="hljs-keyword">uint64</span>(elemSize))
+
+<span class="hljs-comment">// done size in memory: 4</span>
+<span class="hljs-comment">// done buffer size in memory: 0</span>
+<span class="hljs-comment">// doneBool size in memory: 4</span>
+<span class="hljs-comment">// doneBool buffer size in memory: 10</span>
+</span></span></foreignObject></svg></code></pre>
+<p>Playground: <a href="https://play.golang.org/p/SQjL0fH63wi">https://play.golang.org/p/SQjL0fH63wi</a></p>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="38" data-marpit-scope-qFqPPbns="" data-theme="default" style="--theme:default;">
+<h1>Questions?</h1>
+<h2>Carson Anderson - Weave</h2>
+<h2><img src="img/github.png" alt="width:1em" style="width:1em;" /> carsonoid       <img src="img/twit.png" alt="width:1em" style="width:1em;" /> carson_ops</h2>
+<h2>Markdown To Slides: <a href="https://marp.app">https://marp.app</a></h2>
+<h3><a href="https://github.com/carsonoid/adventofcode19">https://github.com/carsonoid/adventofcode19</a></h3>
+</section>
+<script>!function(){"use strict";const t=()=>"Apple Computer, Inc."===navigator.vendor?[e]:[];function e(t){Array.from(document.getElementsByTagName("svg"),e=>{if(e.hasAttribute("data-marpit-svg")){const{clientHeight:r,clientWidth:a}=e;e.style.transform||(e.style.transform="translateZ(0)");const o=t||e.currentScale||1,i=e.viewBox.baseVal.width/o,n=e.viewBox.baseVal.height/o,s=Math.min(r/n,a/i);Array.from(e.querySelectorAll(":scope > foreignObject"),t=>{const e=t.x.baseVal.value,o=t.y.baseVal.value;Array.from(t.querySelectorAll(":scope > section"),t=>{t.style.transformOrigin||(t.style.transformOrigin="0 0");const l=(a-s*i)/2-e,c=(r-s*n)/2-o;t.style.transform=`translate3d(${l}px,${c}px,0) scale(${s}) translate(${e}px,${o}px)`})})}})}const r="data-marp-fitting",a="data-marp-fitting-code",o="data-marp-fitting-math",i=(t,e,r)=>{if(t.getAttribute(e)!==r)return t.setAttribute(e,r),!0};function n(e=!0){for(const e of t())e();Array.from(document.querySelectorAll(`svg[${r}="svg"]`),t=>{const e=t.firstChild,r=e.firstChild,{scrollWidth:n,scrollHeight:s}=r;let l,c=1;if(t.hasAttribute(a)&&(l=t.parentElement.parentElement),t.hasAttribute(o)&&(l=t.parentElement),l){const t=getComputedStyle(l),e=Math.ceil(l.clientWidth-parseFloat(t.paddingLeft)-parseFloat(t.paddingRight));e&&(c=e)}const p=Math.max(n,c),d=Math.max(s,1),m=`0 0 ${p} ${d}`;i(e,"width",`${p}`),i(e,"height",`${d}`),i(t,"preserveAspectRatio",getComputedStyle(t).getPropertyValue("--preserve-aspect-ratio")||"xMinYMin meet"),i(t,"viewBox",m)&&t.classList.toggle("__reflow__")}),e&&window.requestAnimationFrame(()=>n(e))}!function(){if("undefined"==typeof window)throw new Error("Marp Core's browser script is valid only in browser context.");window.marpCoreBrowserScript?console.warn("Marp Core's browser script has already executed."):(Object.defineProperty(window,"marpCoreBrowserScript",{value:!0}),n())}()}();
+</script></foreignObject></svg></div><script>!function(){"use strict";var e={from:function(e,t){var n,r=1===(e.parent||e).nodeType?e.parent||e:document.querySelector(e.parent||e),s=[].filter.call("string"==typeof e.slides?r.querySelectorAll(e.slides):e.slides||r.children,(function(e){return"SCRIPT"!==e.nodeName})),o={},a=function(e,t){return(t=t||{}).index=s.indexOf(e),t.slide=e,t},i=function(e,t){o[e]=(o[e]||[]).filter((function(e){return e!==t}))},l=function(e,t){return(o[e]||[]).reduce((function(e,n){return e&&!1!==n(t)}),!0)},c=function(e,t){s[e]&&(n&&l("deactivate",a(n,t)),n=s[e],l("activate",a(n,t)))},u=function(e,t){var r=s.indexOf(n)+e;l(e>0?"next":"prev",a(n,t))&&c(r,t)},d={off:i,on:function(e,t){return(o[e]||(o[e]=[])).push(t),i.bind(null,e,t)},fire:l,slide:function(e,t){if(!arguments.length)return s.indexOf(n);l("slide",a(s[e],t))&&c(e,t)},next:u.bind(null,1),prev:u.bind(null,-1),parent:r,slides:s,destroy:function(e){l("destroy",a(n,e)),o={}}};return(t||[]).forEach((function(e){e(d)})),n||c(0),d}};function t(e){e.parent.classList.add("bespoke-marp-parent"),e.slides.map(e=>e.classList.add("bespoke-marp-slide")),e.on("activate",t=>{e.slides.map(e=>e.classList.remove("bespoke-marp-active")),t.slide.classList.add("bespoke-marp-active")})}function n(e=2e3){return t=>{let n;function r(){n&&clearTimeout(n),n=setTimeout(()=>{t.parent.classList.add("bespoke-marp-inactive")},e),t.parent.classList.remove("bespoke-marp-inactive")}document.addEventListener("mousedown",r),document.addEventListener("mousemove",r),document.addEventListener("touchend",r),setTimeout(r,0)}}const r=["AUDIO","BUTTON","INPUT","SELECT","TEXTAREA","VIDEO"];function s(e){e.parent.addEventListener("keydown",e=>{if(!e.target)return;const t=e.target;(r.includes(t.nodeName)||"true"===t.contentEditable)&&e.stopPropagation()})}function o(e){window.addEventListener("load",()=>{for(const t of e.slides){const e=t.querySelector("[data-marp-fitting]")?"":"hideable";t.setAttribute("data-bespoke-marp-load",e)}})}function a(e){let t=0,n=0;Object.defineProperty(e,"fragments",{enumerable:!0,value:e.slides.map(e=>[null,...e.querySelectorAll("[data-marpit-fragment]")])});const r=r=>void 0!==e.fragments[t][n+r],s=(r,s)=>{t=r,n=s,e.fragments.forEach((e,t)=>{e.forEach((e,n)=>{if(null==e)return;const o=t<r||t===r&&n<=s;e.setAttribute("data-bespoke-marp-fragment",o?"active":"inactive"),t===r&&n===s?e.setAttribute("data-bespoke-marp-current-fragment","current"):e.removeAttribute("data-bespoke-marp-current-fragment")})}),e.fragmentIndex=s;const o={slide:e.slides[r],index:r,fragments:e.fragments[r],fragmentIndex:s};e.fire("fragment",o)};e.on("next",()=>{if(r(1))return s(t,n+1),!1;const o=t+1;e.fragments[o]&&s(o,0)}),e.on("prev",()=>{if(r(-1))return s(t,n-1),!1;const o=t-1;e.fragments[o]&&s(o,e.fragments[o].length-1)}),e.on("slide",({index:t,fragment:n})=>{let r=0;if(void 0!==n){const s=e.fragments[t];if(s){const{length:e}=s;r=-1===n?e-1:Math.min(Math.max(n,0),e-1)}}s(t,r)}),s(0,0)}var i,l=function(e,t){return e(t={exports:{}},t.exports),t.exports}((function(e){
+/*!
+  * screenfull
+  * v5.0.0 - 2019-09-09
+  * (c) Sindre Sorhus; MIT License
+  */
+!function(){var t="undefined"!=typeof window&&void 0!==window.document?window.document:{},n=e.exports,r=function(){for(var e,n=[["requestFullscreen","exitFullscreen","fullscreenElement","fullscreenEnabled","fullscreenchange","fullscreenerror"],["webkitRequestFullscreen","webkitExitFullscreen","webkitFullscreenElement","webkitFullscreenEnabled","webkitfullscreenchange","webkitfullscreenerror"],["webkitRequestFullScreen","webkitCancelFullScreen","webkitCurrentFullScreenElement","webkitCancelFullScreen","webkitfullscreenchange","webkitfullscreenerror"],["mozRequestFullScreen","mozCancelFullScreen","mozFullScreenElement","mozFullScreenEnabled","mozfullscreenchange","mozfullscreenerror"],["msRequestFullscreen","msExitFullscreen","msFullscreenElement","msFullscreenEnabled","MSFullscreenChange","MSFullscreenError"]],r=0,s=n.length,o={};r<s;r++)if((e=n[r])&&e[1]in t){for(r=0;r<e.length;r++)o[n[0][r]]=e[r];return o}return!1}(),s={change:r.fullscreenchange,error:r.fullscreenerror},o={request:function(e){return new Promise(function(n,s){var o=function(){this.off("change",o),n()}.bind(this);this.on("change",o),e=e||t.documentElement,Promise.resolve(e[r.requestFullscreen]()).catch(s)}.bind(this))},exit:function(){return new Promise(function(e,n){if(this.isFullscreen){var s=function(){this.off("change",s),e()}.bind(this);this.on("change",s),Promise.resolve(t[r.exitFullscreen]()).catch(n)}else e()}.bind(this))},toggle:function(e){return this.isFullscreen?this.exit():this.request(e)},onchange:function(e){this.on("change",e)},onerror:function(e){this.on("error",e)},on:function(e,n){var r=s[e];r&&t.addEventListener(r,n,!1)},off:function(e,n){var r=s[e];r&&t.removeEventListener(r,n,!1)},raw:r};r?(Object.defineProperties(o,{isFullscreen:{get:function(){return Boolean(t[r.fullscreenElement])}},element:{enumerable:!0,get:function(){return t[r.fullscreenElement]}},isEnabled:{enumerable:!0,get:function(){return Boolean(t[r.fullscreenEnabled])}}}),n?e.exports=o:window.screenfull=o):n?e.exports={isEnabled:!1}:window.screenfull={isEnabled:!1}}()}));l.isEnabled;function c(e){e.fullscreen=()=>{l.isEnabled&&l.toggle(document.body)},document.addEventListener("keydown",t=>{70!==t.which&&122!==t.which||t.altKey||t.ctrlKey||t.metaKey||!l.isEnabled||(e.fullscreen(),t.preventDefault())})}function u(e={}){const t=Object.assign({interval:200},e);return e=>{document.addEventListener("keydown",t=>{(32===t.which&&t.shiftKey||33===t.which||37===t.which||38===t.which)&&e.prev(),(32===t.which&&!t.shiftKey||34===t.which||39===t.which||40===t.which)&&e.next(),35===t.which&&e.slide(e.slides.length-1,{fragment:-1}),36===t.which&&e.slide(0)});let n,r,s=0;e.parent.addEventListener("wheel",o=>{let a=!1;const l=(e,t)=>{var n;e&&(a=a||function(e,t){return function(e,t){const n=t===i.X?"Width":"Height";return e[`client${n}`]<e[`scroll${n}`]}(e,t)&&function(e,t){const{overflow:n}=e,r=e[`overflow${t}`];return"auto"===n||"scroll"===n||"auto"===r||"scroll"===r}(getComputedStyle(e),t)}(e,t)),(null===(n=e)||void 0===n?void 0:n.parentElement)&&l(e.parentElement,t)};if(0!==o.deltaX&&l(o.target,i.X),0!==o.deltaY&&l(o.target,i.Y),a)return;o.preventDefault(),r&&clearTimeout(r),r=setTimeout(()=>{n=0},t.interval);const c=Date.now()-s<t.interval,u=Math.sqrt(Math.pow(o.deltaX,2)+Math.pow(o.deltaY,2)),d=u<=n;if(n=u,c||d)return;let f;(o.deltaX>0||o.deltaY>0)&&(f="next"),(o.deltaX<0||o.deltaY<0)&&(f="prev"),f&&(e[f](),s=Date.now())})}}function d(e=".bespoke-marp-osc"){const t=document.querySelector(e);if(!t)return()=>{};const n=(e,n)=>{t.querySelectorAll(`[data-bespoke-marp-osc=${JSON.stringify(e)}]`).forEach(n)};return l.isEnabled||n("fullscreen",e=>e.style.display="none"),e=>{t.addEventListener("click",t=>{if(t.target instanceof HTMLElement){const{bespokeMarpOsc:n}=t.target.dataset;switch(n&&t.target.blur(),n){case"next":e.next();break;case"prev":e.prev();break;case"fullscreen":"function"==typeof e.fullscreen&&l.isEnabled&&e.fullscreen()}}}),e.parent.appendChild(t),e.on("activate",({index:t})=>{n("page",n=>n.textContent=`Page ${t+1} of ${e.slides.length}`)}),e.on("fragment",({index:t,fragments:r,fragmentIndex:s})=>{n("prev",e=>e.disabled=0===t&&0===s),n("next",n=>n.disabled=t===e.slides.length-1&&s===r.length-1)}),l.isEnabled&&l.onchange(()=>n("fullscreen",e=>e.classList.toggle("exit",l.isEnabled&&l.isFullscreen)))}}!function(e){e.X="X",e.Y="Y"}(i||(i={}));const f=".bespoke-progress-bar";function h(e){e.on("activate",t=>{document.querySelectorAll(f).forEach(n=>{n.style.flexBasis=`${100*t.index/(e.slides.length-1)}%`})})}const m=(...e)=>history.replaceState(...e),g=e=>new URLSearchParams(location.search).get(e),p=e=>{const t=g(e);return b({[e]:void 0}),t},b=(e,t={})=>{const n=Object.assign({location:location,setter:m},t),r=new URLSearchParams(n.location.search);for(const t of Object.keys(e)){const n=e[t];"string"==typeof n?r.set(t,n):r.delete(t)}try{n.setter(null,document.title,((e,{protocol:t,host:n,pathname:r,hash:s}=location)=>{const o=e.toString();return`${t}//${n}${r}${o?"?":""}${o}${s}`})(r,n.location))}catch(e){console.error(e)}},v=e=>{const t=Number.parseInt(e,10);return Number.isNaN(t)?null:t};function w(e={}){const t=Object.assign({history:!0},e);return e=>{let n=!0;const r=e=>{const t=n;try{return n=!0,e()}finally{n=t}},s=(t={fragment:!0})=>{((t,n)=>{const{fragments:r,slides:s}=e,o=Math.max(0,Math.min(t,s.length-1)),a=Math.max(0,Math.min(n||0,r[o].length-1));o===e.slide()&&a===e.fragmentIndex||e.slide(o,{fragment:a})})((v(location.hash.slice(1))||1)-1,t.fragment?v(g("f")||""):null)};e.on("fragment",({index:e,fragmentIndex:r})=>{n||b({f:0===r||r.toString()},{location:Object.assign(Object.assign({},location),{hash:`#${e+1}`}),setter:(...e)=>t.history?history.pushState(...e):history.replaceState(...e)})}),setTimeout(()=>{s(),window.addEventListener("hashchange",()=>r(()=>{s({fragment:!1}),b({f:void 0})})),window.addEventListener("popstate",()=>{n||r(()=>s())}),n=!1},0)}}var y=self.crypto||self.msCrypto,E=function(e){e=e||21;for(var t="",n=y.getRandomValues(new Uint8Array(e));e--;)t+="QLUint8ARdomValuesObj0h6345-79BCrypgJzHKTNYDSMkXPZ_FfG1WcqvwxEI2"[63&n[e]];return t};function x(e={}){const t=e.key||E(),n=`bespoke-marp-sync-${t}`,r=()=>{const e=localStorage.getItem(n);return e?JSON.parse(e):Object.create(null)},s=e=>{const t=r(),s=Object.assign(Object.assign({},t),e(t));return localStorage.setItem(n,JSON.stringify(s)),s};return s(e=>({reference:(e.reference||0)+1})),e=>{Object.defineProperty(e,"syncKey",{value:t,enumerable:!0}),setTimeout(()=>{e.on("fragment",e=>{s(()=>({index:e.index,fragmentIndex:e.fragmentIndex}))})},0),window.addEventListener("storage",t=>{if(t.key===n&&t.oldValue&&t.newValue){const n=JSON.parse(t.oldValue),r=JSON.parse(t.newValue);n.index===r.index&&n.fragmentIndex===r.fragmentIndex||e.slide(r.index,{fragment:r.fragmentIndex})}}),e.on("destroy",()=>{const{reference:e}=r();void 0===e||e<=1?localStorage.removeItem(n):s(()=>({reference:e-1}))})}}function k(e={}){const t=Object.assign({slope:Math.tan(-35*Math.PI/180),swipeThreshold:30},e);return e=>{let n;const r=e.parent,s=e=>{const t=r.getBoundingClientRect();return{x:e.pageX-(t.left+t.right)/2,y:e.pageY-(t.top+t.bottom)/2}};r.addEventListener("touchstart",e=>{n=1===e.touches.length?s(e.touches[0]):void 0}),r.addEventListener("touchmove",e=>{if(n)if(1===e.touches.length){e.preventDefault();const t=s(e.touches[0]),r=t.x-n.x,o=t.y-n.y;n.delta=Math.sqrt(Math.pow(Math.abs(r),2)+Math.pow(Math.abs(o),2)),n.radian=Math.atan2(r,o)}else n=void 0}),r.addEventListener("touchend",r=>{if(n){if(n.delta&&n.delta>=t.swipeThreshold){let s=n.radian-t.slope;s=(s+Math.PI)%(2*Math.PI)-Math.PI,e[s<0?"next":"prev"](),r.stopPropagation()}n=void 0}})}}!function(r=document.getElementById("p")){const i=p("sync")||void 0,l=e.from(r,[s,t,n(),o,w({history:!1}),u(),c,h,k(),d(),a,x({key:i})]);window.addEventListener("beforeunload",()=>b({sync:l.syncKey})),window.addEventListener("unload",()=>l.destroy())}()}();
+</script></body></html>

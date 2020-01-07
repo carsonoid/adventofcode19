@@ -1,10 +1,41 @@
-# Notes
+---
+marp: true
+theme: default
+paginate: true
+#footer: ![width:1em](img/github.png) carsonoid | ![width:1em](img/twit.png) carson_ops
+---
+<!-- 
+_paginate: false
+_footer: ""
+-->
 
-## Day 1 - Integer division
+<!-- Scoped style -->
+<style scoped>
+h1,h2 {
+	text-align: center;
+}
+h1 {
+  color: black;
+  text-decoration: underline;
+  font-size: 3em;
+}
+h2 {
+  color: black;
+  font-size: 2em;
+}
+</style>
+
+# Advent of Code 19
+## _Takeaways and Go Behaviors_
+## Carson Anderson - Weave
+## ![width:1em](img/github.png) carsonoid &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![width:1em](img/twit.png) carson_ops
+
+---
+# Day 1 - Integer division
 
 > Fuel required to launch a given module is based on its mass. Specifically, to find the fuel required for > a module, take its mass, divide by three, **round down**, and subtract 2.
 
-Original:
+---
 
 ```golang
 var mass = 298
@@ -19,25 +50,34 @@ func main() {
 	fmt.Println("// Oh... int division in go rounds down by default :D")
 	fmt.Println(mass / 3)
 }
-```
 
-```golang
+/* OUTPUT:
 // Non-even division
 99.33333333333333
 // Round down via math.Floor
 99
 // Oh... int division in go rounds down by default :D
 99
+*/
 ```
 
 Playground: https://play.golang.org/p/JfTkBHYdxeO
 
-## Day 2 - Scanners vs Readers
+<!-- Test Presenters note -->
+
+---
+
+# Day 2 - Intocodde: Scanners vs Readers
 
 > Intcode programs are given as a list of integers
 
-The input for this day was a single line. And could potentially get very,very long. So it was important
-to understand the difference between readers and scanners.
+```
+1,0,0,3,1,1,2,3,1,3,4,3,1,5,0,3,2,13,1,19,1,10,19,23,1,23,9,27,1,5,27,31,2,31,13,35,1,35,5,39,1,39,5,43,2,...
+```
+
+The input for this day was a single line. And could potentially get very, very long. So it was important to understand the difference between readers and scanners.
+
+---
 
 ### Scanners
 
@@ -63,6 +103,8 @@ fmt.Println(scanner.Err())
 ```
 
 Playground: https://play.golang.org/p/KOgOzt_-ROV
+
+---
 
 ### Readers
 
@@ -94,6 +136,8 @@ for {
 
 Playground: https://play.golang.org/p/fcaBp7G8L5D
 
+---
+
 ### Result
 
 Final intcode parsing function
@@ -124,12 +168,16 @@ func getIntCode(filePath string) []uint64 {
 }
 ```
 
-## Day 3
+---
+
+# Day 3
 
 > For example, if the first wire's path is R8,U5,L5,D3,
 > then starting from the central port (o), it goes right 8, up 5, left 5, and finally down 3:
 
 More parsing fun! The first step was to convert lines of instruction strings to slices of instructions. Reading the input by lines and further splitting by strings was easy! But how to convert `R75` to a struct? Runes to the rescue!
+
+---
 
 ```golang
 type instruction struct {
@@ -156,6 +204,10 @@ func getInstructionsFromString(in string) []instruction {
 }
 ```
 
+---
+
+Be wary of the default stringification of runes though...
+
 ```golang
 // R75,D30,R83,U83,L12,D49,R71,U7,L72
 []main.instruction{
@@ -173,13 +225,20 @@ func getInstructionsFromString(in string) []instruction {
 
 Playground: https://play.golang.org/p/CEtf-SBKppL
 
-## Day 4 - Irregular Regex
+---
 
-Find the password. Most rules were easy... but:
+# Day 4 - Irregular Regex
+
+Find the password that fits a given set of rules. Most  were easy, but...
 
 > Two adjacent digits are the same (like 22 in 122345).
 
-I tried to use a regex like `(\d)\1` to test for doubles. Suddenly, no compilation `unknown escape sequence`
+I tried to use a regex like `(\d)\1` to test for doubles. Suddenly, no compilation:
+```
+unknown escape sequence
+```
+
+---
 
 It turns out that Go uses the RE2 engine, which doesn't support backreferences. So you are not able to to do anything like: `(\d)\1` to test for doubles.
 
@@ -187,10 +246,13 @@ Reasoning from https://swtch.com/~rsc/regexp/regexp3.html. Emhpasis added.
 
 > RE2 disallows PCRE features that cannot be implemented efficiently using automata. **(The most notable such feature is backreferences.)** In return for giving up these difficult to implement (and often incorrectly used) features, RE2 can provably analyze the regular expressions or the automata. We've already seen examples of analysis for use in RE2 itself, in the DFA's use of memchr and in the analysis of whether a regular expression is one-pass. **RE2 can also provide analyses that let higher-level applications speed searches.**
 
-Translation: No backreferences or other complex things so we can ensure a linear parse time.
+**Translation: No backreferences or other complex things so we can ensure a linear parse time.**
 
-## Day 7 - Channels ahoy!
+---
 
+# Day 7 - Amplifiers In A Row
+
+More use of the intcode computer. But this time the problem required more than one to run. And for some fun connections:
 
 > There are five amplifiers connected in series; each one receives an input signal and produces an output signal. They are connected such that the first amplifier's output leads to the second amplifier's input, ...
 
@@ -200,7 +262,11 @@ Translation: No backreferences or other complex things so we can ensure a linear
     O-------O  O-------O  O-------O  O-------O  O-------O
 ```
 
-So run 5 computers in a row, passing the output of one into the input of another. Easy! Until part 2:
+So run 5 computers in a row, passing the output of one into the input of another. Easy!
+
+---
+
+## A Wild Part 2 Appears:
 
 > The Elves quickly talk you through rewiring the amplifiers into a feedback loop:
 
@@ -215,7 +281,13 @@ So run 5 computers in a row, passing the output of one into the input of another
                                                      (to thrusters)
 ```
 
+---
+
+# Channels!
+
 With channels, we can actually "wire" the amps together in code and let them run at their own pace concurrently. Not a requirement, but pretty cool!
+
+---
 
 ```golang
 type amplifier struct {
@@ -241,6 +313,8 @@ func newAmplifier(id int, code []int64, phase int64) *amplifier {
 	return &a
 }
 ```
+
+---
 
 ```golang
 // Setup amplifiers
@@ -272,7 +346,9 @@ for i := 0; i < numAmps; i++ {
 }
 ```
 
-## Day 8 - Runes to ints and Unicode!
+---
+
+# Day 8 - Runes to ints and Unicode!
 
 Render an image sent to you.
 
@@ -283,6 +359,10 @@ Render an image sent to you.
 Another case where inputs could be very long lines. Time to use a reader! One rune at a time. (Hindsight: probably should have used ReadByte or converted to a string and then int for proper error checking)
 
 
+---
+
+This code converts a rune for 0-9 to an int. But it will fail silently for runes out of range.
+
 ```golang
 r, _, err := reader.ReadRune()
 if err != nil {
@@ -290,24 +370,29 @@ if err != nil {
 } else if r == '\n' {
     break
 }
-pixel := int(r - '0') // Convert a rune for 0-9 to an int. Code will fail silently for runes out of range.
+pixel := int(r - '0') 
+```
+
+
+---
+
+```golang
+pixel := int(r - '0') 
 ```
 
 Uhh. what is that thing? Turns out it is just convenient ascii math.
 
 
-CODE | CHAR
----- | ----
-48   | 0
-49   | 1
-50   | 2
-51   | 3
-52   | 4
-53   | 5
-54   | 6
-55   | 7
-56   | 8
-57   | 9
+CODE | CHAR |   | CODE | CHAR
+-----|------|---|------|-----
+48   | 0    |   | 53   | 5
+49   | 1    |   | 54   | 6
+50   | 2    |   | 55   | 7
+51   | 3    |   | 56   | 8
+52   | 4    |   | 57   | 9
+
+---
+
 
 ```golang
 fmt.Printf("%d\n", '1')                              // Prints ascii code for '1'
@@ -326,18 +411,21 @@ digit, err = strconv.Atoi(string('A'))
 if err != nil {
     fmt.Printf("error: '%v' cannot be converted to a digit", string('A'))
 }
-```
-```
+
+/* OUTPUT:
 49
 49 - 48 = 1
 65 - 48 = 17
 1
 error: 'A' cannot be converted to a digit
+*/
 ```
 
 Playground: https://play.golang.org/p/mKCo7SsOF2l
 
-### Unicode
+---
+
+### Also: Unicode
 
 Cleaner visuals!
 
@@ -354,7 +442,21 @@ Cleaner visuals!
 			fmt.Printf("\n")
 		}
     }
+
+/*
+████░█░░░░███░░░░██░████░
+░░░█░█░░░░█░░█░░░░█░█░░░░
+░░█░░█░░░░███░░░░░█░███░░
+░█░░░█░░░░█░░█░░░░█░█░░░░
+█░░░░█░░░░█░░█░█░░█░█░░░░
+████░████░███░░░██░░█░░░░
+*/
 ```
+
+
+---
+
+### About that output....
 
 ```
 ████░█░░░░███░░░░██░████░
@@ -365,7 +467,9 @@ Cleaner visuals!
 ████░████░███░░░██░░█░░░░
 ```
 
-It wasn't until a later day that I finally realized why I couldn't find a unicode character for an empty block...
+* It wasn't until a later day that I finally realized why I couldn't find a unicode character for an empty block...
+
+---
 
 ```
 ███
@@ -373,13 +477,41 @@ It wasn't until a later day that I finally realized why I couldn't find a unicod
 ███
 ```
 
-## Day 9 - Custom Types for Compilation Safety
+---
 
-> Your existing Intcode computer is missing one key feature: it needs support for parameters in relative mode.
->
->Parameters in mode 2, relative mode, behave very similarly to parameters in position mode: the parameter is interpreted as a position. Like position mode, parameters in relative mode can be read from or written to.
+# Day 5 - Custom Types for Compilation Safety
 
-So now intcode has 3 different "kinds" of `int`s: values, operational codes, and parameter modes. But they are all `int` to the compiler by default. That means we open ourselves up to cases where the default type checking in the compiler will fail to find issues at compile time. Let's fix it with custom types!
+> ... you'll need to add support for parameter modes:
+> 
+> Each parameter of an instruction is handled based on its parameter mode. ...
+> Parameter modes are stored in the same value as the instruction's opcode. The opcode is a two-digit number based only on the ones and tens digit of the value, that is, the opcode is the rightmost two digits of the first value in an instruction. Parameter modes are single digits, one per parameter, read right-to-left from the opcode:
+
+---
+
+> The first instruction, 1002,4,3,4, is a multiply instruction - the rightmost two digits of the first value, 02, indicate opcode 2, multiplication. Then, going right to left, the parameter modes are 0 (hundreds digit), 1 (thousands digit), and 0 (ten-thousands digit, not present and therefore zero):
+
+```
+ABCDE
+ 1002
+
+DE - two-digit opcode,      02 == opcode 2
+ C - mode of 1st parameter,  0 == position mode
+ B - mode of 2nd parameter,  1 == immediate mode
+ A - mode of 3rd parameter,  0 == position mode,
+                                  omitted due to being a leading zero
+```
+
+---
+
+So now intcode has 3 different "kinds" of `int`: 
+
+- values
+- operational codes
+- parameter modes.
+
+But they are all `int` to the compiler by default. That means we open ourselves up to cases where the default type checking in the compiler will fail to find issues at compile time. Let's fix it with custom types!
+
+---
 
 ```golang
 type OpCode int
@@ -397,6 +529,18 @@ const (
 	OpCodeQuit        OpCode = 99
 )
 
+func getOpCode(m int64) OpCode {
+	switch m {
+	case 1:
+		return OpCodeAdd
+	case 2:
+		return OpCodeMultiply
+	...
+}
+```
+---
+
+```golang
 type Mode int
 
 const (
@@ -411,15 +555,6 @@ type operation struct {
 	params []int64
 }
 
-func getOpCode(m int64) OpCode {
-	switch m {
-	case 1:
-		return OpCodeAdd
-	case 2:
-		return OpCodeMultiply
-	...
-}
-
 func getMode(m int64) Mode {
 	switch m {
 	case 0:
@@ -432,13 +567,46 @@ func getMode(m int64) Mode {
 
 Now we can catch more errors at compile time and get more readable code to boot!
 
+---
+
+### Side Note
+
+ You can define methods for custom types
+
+```golang
+func (m Mode) Print() {
+	fmt.Println(m)
+}
+
+func main() {
+	m := Mode(2)
+	m.Print()
+}
+/* OUTPUT:
+main.Mode
+2
+*/
+```
+
+Playground: https://play.golang.org/p/eXchfaKqcBg
+
+---
+
 # Day 11 - First "Screen" to draw
 
-Graphics libraries have 0,0 as the top,left corner for a reason!
+Graphics libraries have 0,0 as the top,left corner for a reason! It's hard to print rows of pixels starting from the center... So you have to store your "screen" as a slice of slice and print top-to-bottom and left-to-right from zero both ways.
 
-# Day 12 - Copies, copies, copies!
+```golang
+func print(screen [][]int) {
+	for y := range screen {
+		for x := range screen[row] {
+			fmt.println(screen[y][x])
+		}
+	}
+}
+```
 
-Go passes **everything** by copy. And the element variable returned by `range` will always return a **copy** of your loop variable. Can be really tricky with slices/maps of slices/structs/maps
+---
 
 # Day 13 - No good graphical rendering in go.
 
@@ -464,40 +632,15 @@ func Draw(c *computer) {
 }
 ```
 
-## Side Note - Empty structs are neat!
+---
 
-Empty structs take up zero memory. And are great for buffered channels!
-
-```golang
-var iters = 10
-
-// Chans of empty structs take up zero bytes of mem!
-done := make(chan struct{}, iters) // buffer iters
-elemSize := unsafe.Sizeof(struct{}{})
-fmt.Printf("done size in memory: %d\n", unsafe.Sizeof(done))
-fmt.Printf("done buffer size in memory: %d\n", uint64(iters)*uint64(elemSize))
-
-// Compare to a chan of booleans
-doneBool := make(chan bool, iters) // buffer iters as boolean
-elemSize = unsafe.Sizeof(true)
-fmt.Printf("doneBool size in memory: %d\n", unsafe.Sizeof(doneBool))
-fmt.Printf("doneBool buffer size in memory: %d\n", uint64(iters)*uint64(elemSize))
-```
-```
-done size in memory: 4
-done buffer size in memory: 0
-doneBool size in memory: 4
-doneBool buffer size in memory: 10
-```
-
-Playground: https://play.golang.org/p/SQjL0fH63wi
-
-
-## Day 23 - Channels, goroutines, and Races
+# Day 23 - Channels, goroutines, and Races
 
 > What is the first Y value delivered by the NAT to the computer at address 0 twice in a row?
 
 Taking the advices of Tod Hansmann, I had converted my the input and output processes of my `intcode` computer to be functions instead of using channels directly. But I suddenly had ordering issues.
+
+---
 
 Anonymous functions can be very cool. But they come with their own risks:
 
@@ -519,13 +662,21 @@ for i := 0; i < iters; i++ {
     }(i) // pass i as the parameter (will be passed by copy)
 }
 
-// wait for all funcs to complete. Note that it's 100% possible that all funcs are done before we even get to this part of the code. Thanks to the fully buffered channel.
+// wait for all funcs to complete. 
+// Note that it's 100% possible that all funcs are done before we even get to 
+// this part of the code. Thanks to the fully buffered channel.
 for i := 0; i < iters; i++ {
     <-done
 }
 ```
+
+Playground: https://play.golang.org/p/-MfJu31Set8
+
+---
+
+Results:
+
 ```
-// output changes every time. Loop variable is usually (but not always!) value from the end of the loop
 i: 10, out: 9
 i: 10, out: 0
 i: 10, out: 1
@@ -538,4 +689,98 @@ i: 10, out: 7
 i: 10, out: 8
 ```
 
+- The output changes order every time. 
+- The loop variable is usually, but not always, the value from the end of the loop and should not be used.
+- `go vet` would catch this. 
+
+Also, getting ordered output kind of goes against the whole concept of goroutines.
+
+---
+
+And after I did all the work with channels and returns... 
+
 And then I learned about waitgroups... https://gobyexample.com/waitgroups
+
+```golang
+func worker(id int, wg *sync.WaitGroup) {
+    fmt.Printf("Worker %d starting\n", id)
+
+    time.Sleep(time.Second)
+    fmt.Printf("Worker %d done\n", id)
+
+    wg.Done()
+}
+
+func main() {
+
+    var wg sync.WaitGroup
+
+    for i := 1; i <= 5; i++ {
+        wg.Add(1)
+        go worker(i, &wg)
+    }
+
+    wg.Wait()
+}
+```
+
+---
+
+## Side Note - Empty structs are neat!
+
+Empty structs take up zero memory. And are great for buffered channels!
+
+```golang
+var iters = 10
+
+// Chans of empty structs take up zero bytes of mem!
+done := make(chan struct{}, iters) // buffer iters
+elemSize := unsafe.Sizeof(struct{}{})
+fmt.Printf("done size in memory: %d\n", unsafe.Sizeof(done))
+fmt.Printf("done buffer size in memory: %d\n", uint64(iters)*uint64(elemSize))
+
+// Compare to a chan of booleans
+doneBool := make(chan bool, iters) // buffer iters as boolean
+elemSize = unsafe.Sizeof(true)
+fmt.Printf("doneBool size in memory: %d\n", unsafe.Sizeof(doneBool))
+fmt.Printf("doneBool buffer size in memory: %d\n", uint64(iters)*uint64(elemSize))
+
+// done size in memory: 4
+// done buffer size in memory: 0
+// doneBool size in memory: 4
+// doneBool buffer size in memory: 10
+```
+
+Playground: https://play.golang.org/p/SQjL0fH63wi
+
+---
+<!-- 
+_paginate: false
+_footer: ""
+-->
+
+<!-- Scoped style -->
+<style scoped>
+h1,h2,h3 {
+	text-align: center;
+}
+h1 {
+  color: black;
+  text-decoration: underline;
+  font-size: 3em;
+}
+h2 {
+  color: black;
+  font-size: 2em;
+}
+h3 {
+  color: black;
+  font-size: 1.5em;
+}
+</style>
+
+# Questions?
+## Carson Anderson - Weave
+## ![width:1em](img/github.png) carsonoid &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ![width:1em](img/twit.png) carson_ops
+## Markdown To Slides: https://marp.app
+### https://github.com/carsonoid/adventofcode19
