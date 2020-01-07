@@ -63,11 +63,9 @@ func main() {
 
 Playground: https://play.golang.org/p/JfTkBHYdxeO
 
-<!-- Test Presenters note -->
-
 ---
 
-# Day 2 - Intocodde: Scanners vs Readers
+# Day 2 - Intcode: Scanners vs Readers
 
 > Intcode programs are given as a list of integers
 
@@ -316,6 +314,8 @@ func newAmplifier(id int, code []int64, phase int64) *amplifier {
 
 ---
 
+Make Amps:
+
 ```golang
 // Setup amplifiers
 amps := make([]*amplifier, numAmps)
@@ -323,6 +323,13 @@ for i := 0; i < numAmps; i++ {
     amps[i] = newAmplifier(i, code, phasePerm[i])
 }
 
+```
+
+---
+
+"Wire" amps together
+
+```golang
 // Link inputs to outputs
 for i := 0; i < numAmps; i++ {
     if i == 0 { // link first amp input to last amp output
@@ -331,7 +338,13 @@ for i := 0; i < numAmps; i++ {
         amps[i].input = amps[i-1].output
     }
 }
+```
 
+---
+
+Start the amps and wait for completion
+
+```golang
 // Start amps
 for i := 0; i < numAmps; i++ {
     go amps[i].start()
@@ -634,17 +647,147 @@ func Draw(c *computer) {
 
 ---
 
-# Day 23 - Channels, goroutines, and Races
+# Day 21 & 23 - Fun With Functions
 
-> What is the first Y value delivered by the NAT to the computer at address 0 twice in a row?
+Refactored computer to use funcs instead of channels for input/ouput.
 
-Taking the advices of Tod Hansmann, I had converted my the input and output processes of my `intcode` computer to be functions instead of using channels directly. But I suddenly had ordering issues.
+```golang
+type inputFunc func() int
+type outputFunc func(o int)
+
+type computer struct {
+	input     inputFunc
+	output    outputFunc
+	...
+}
+
+func newComputer(id int, code []int, input inputFunc, output outputFunc) *computer {...}
+
+c := newComputer(0, code,
+	func() int {
+		return 0
+	},
+	func(o int) {
+		fmt.Println(o)
+	},
+)
+
+go c.start()
+```
 
 ---
 
-Anonymous functions can be very cool. But they come with their own risks:
+Or what my actual Day 23 code did:
 
 ```golang
+computers := make([]*computer, numComputers)
+
+for id := range computers {
+	computers[id] = newComputer(id, code,
+			func(c *computer) int { // Input
+				...
+				// Problems came here
+			},
+			func(c *computer, o int) { // Output
+				...
+				// Problems came here
+			},
+		)
+}
+
+for id := range computers {
+	go computers[id].start()
+}
+```
+
+---
+
+Contrived example to illustrate problem:
+
+```golang
+iters := 10
+
+for i := 0; i < iters; i++ {
+	fmt.Printf("i: %d\n", i)
+}
+/*
+i: 0
+i: 1
+i: 2
+i: 3
+i: 4
+i: 5
+i: 6
+i: 7
+i: 8
+i: 9
+*/
+```
+
+Playground: https://play.golang.org/p/LHExek7g1E_g
+
+---
+
+```golang
+iters := 10
+
+for i := 0; i < iters; i++ {
+	go func() {
+		fmt.Printf("i: %d\n", i)
+	}()
+}
+/*
+Program exited.
+*/
+```
+
+Playground: https://play.golang.org/p/3e-vEr1ZTIe
+
+---
+
+
+```golang
+iters := 10
+
+// Make a channel to wait for all goroutines to complete
+done := make(chan struct{})
+
+for i := 0; i < iters; i++ {
+	go func() {
+		 // Defer a send to the done chanel to make sure panics don't cause problems
+        defer func() {
+            done <- struct{}{}
+		}()
+
+		fmt.Printf("i: %d\n", i)
+	}()
+}
+for i := 0; i < iters; i++ {
+    <-done
+}
+/*
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+i: 10
+*/
+```
+
+Playground: https://play.golang.org/p/3e-vEr1ZTIe
+
+---
+
+Final, working example:
+
+```golang
+iters := 10
+
 // Make a channel to wait for all goroutines to complete
 done := make(chan struct{}, iters) // fully buffer done channel for zero memory cost
 
@@ -658,7 +801,7 @@ for i := 0; i < iters; i++ {
         }()
 
         // Print the "i" loop variable, and the "out" function parameter value
-        fmt.Printf("i: %d, out: %d\n", i, out)
+        fmt.Printf("out: %d\n", out)
     }(i) // pass i as the parameter (will be passed by copy)
 }
 
@@ -670,36 +813,11 @@ for i := 0; i < iters; i++ {
 }
 ```
 
-Playground: https://play.golang.org/p/-MfJu31Set8
+Playground: https://play.golang.org/p/h50Vu83DZNk
 
 ---
 
-Results:
-
-```
-i: 10, out: 9
-i: 10, out: 0
-i: 10, out: 1
-i: 10, out: 2
-i: 10, out: 3
-i: 10, out: 4
-i: 10, out: 5
-i: 10, out: 6
-i: 10, out: 7
-i: 10, out: 8
-```
-
-- The output changes order every time. 
-- The loop variable is usually, but not always, the value from the end of the loop and should not be used.
-- `go vet` would catch this. 
-
-Also, getting ordered output kind of goes against the whole concept of goroutines.
-
----
-
-And after I did all the work with channels and returns... 
-
-And then I learned about waitgroups... https://gobyexample.com/waitgroups
+After I did all the work with channels and returns.  I learned about waitgroups... https://gobyexample.com/waitgroups
 
 ```golang
 func worker(id int, wg *sync.WaitGroup) {
@@ -726,9 +844,9 @@ func main() {
 
 ---
 
-## Side Note - Empty structs are neat!
+## Language Obscura - Empty structs are neat!
 
-Empty structs take up zero memory. And are great for buffered channels!
+Empty structs take up **zero** memory. And are great for buffered channels!
 
 ```golang
 var iters = 10
